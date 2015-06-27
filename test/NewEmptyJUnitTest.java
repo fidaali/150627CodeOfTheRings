@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import contest.OracleWorld;
 import contest.Solver002;
 import contest.Solver003;
 import contest.Solver004_greedySimple;
@@ -111,4 +112,26 @@ public class NewEmptyJUnitTest {
          
         
     }        
+    
+    @Test
+    public void interpret(){
+        
+        try{
+            throw new RuntimeException();
+        }catch(Exception e){
+            System.out.println(""+e.getStackTrace()[0]);
+        }         
+        {
+            String in ="+..........................";
+            String out= OracleWorld.interpret(in);
+
+            System.out.println(""+out);
+        }
+        {
+            String in ="+>-[<.>-]";
+            String out= OracleWorld.interpret(in);
+
+            System.out.println(""+out);        
+        }
+    }
 }
