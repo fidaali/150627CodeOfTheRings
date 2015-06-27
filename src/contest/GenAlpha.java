@@ -16,7 +16,7 @@ public class GenAlpha {
         
         for (char i='A';i<='Z';i++){
             
-            System.out.print("'"+i+"',");
+            System.out.print(""+i+"");
         
         }
     
