@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+import contest.GreedyTools;
 import contest.OracleWorld;
 import contest.Solver002;
 import contest.Solver003;
@@ -45,7 +46,6 @@ public class NewEmptyJUnitTest {
     public void tearDown() {
     }
 
-    //@Test
     public void interpret() {
 
         try {
@@ -66,8 +66,25 @@ public class NewEmptyJUnitTest {
             System.out.println("" + out);
         }
     }
-
+    
     @Test
+    public void transCostTest(){
+        try {
+            throw new RuntimeException();
+        } catch (Exception e) {
+            System.out.println("" + e.getStackTrace()[0]);
+        }
+         //assertEquals("Text", "Text");
+
+        GreedyTools gt=new GreedyTools();
+
+        String bigIn = "THREE RINGS FOR THE ELVEN KINGS UNDER THE SKY SEVEN FOR THE DWARF LORDS IN THEIR HALLS OF STONE NINE FOR MORTAL MEN DOOMED TO DIE ONE FOR THE DARK LORD ON HIS DARK THRONEIN THE LAND OF MORDOR WHERE THE SHADOWS LIE ONE RING TO RULE THEM ALL ONE RING TO FIND THEM ONE RING TO BRING THEM ALL AND IN THE DARKNESS BIND THEM IN THE LAND OF MORDOR WHERE THE SHADOWS LIE";
+
+        gt.calcGreedyCost(bigIn);
+        System.out.println(gt.calced);
+        
+    }
+
     public void SubStringTest() {
 
         try {
@@ -143,7 +160,7 @@ public class NewEmptyJUnitTest {
 
     }
 
-    @Test
+    //@Test
     public void Solver004() {
 
         try {
