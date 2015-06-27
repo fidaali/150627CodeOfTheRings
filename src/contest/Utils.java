@@ -26,14 +26,18 @@ public class Utils {
             c++; c=c%NBLETTER;        
         };
         public void dec(){
-            c--;c=c&255;        
+            c--;c=(c+NBLETTER)%NBLETTER;        
         };
         
         public char getCurr(){
+            
+            //System.err.println("getCurr "+c);
             return ALLCHAR[c];
         }
         
         public int cost(char dest){
+            //System.err.println("cost from "+ALLCHAR[c]+" to "+dest);
+            
             int p=POS(dest);
             if(p==c) return 0;
             
@@ -49,6 +53,9 @@ public class Utils {
                 byMinus=c-p;
                 byPlus=c-p+NBLETTER;
             }
+            
+            //System.err.println("byMinus "+byMinus);
+            //System.err.println("byPlus "+byPlus);
             
             if(byMinus < byPlus) return -byMinus;
             return byPlus;        
