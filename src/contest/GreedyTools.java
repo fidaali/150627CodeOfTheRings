@@ -6,6 +6,7 @@
 package contest;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -172,17 +173,17 @@ public class GreedyTools {
         }
     }
 
-    public static class TransitionCost implements Comparable<TransitionCost>{
+    public static class TransitionCost implements Comparable<TransitionCost> {
 
         final String trans;
 
         private List<Integer> costs = new ArrayList<>(510);
-        private int sum=0;
-        
-        public void addCost(int direct){
-            int v=direct;
+        private int sum = 0;
+
+        public void addCost(int direct) {
+            int v = direct;
             costs.add(v);
-            sum+=v;
+            sum += v;
         }
 
         public TransitionCost(String trans) {
@@ -191,124 +192,128 @@ public class GreedyTools {
 
         @Override
         public int compareTo(TransitionCost t) {
-            return t.sum-this.sum;
+            return t.sum - this.sum;
         }
 
         @Override
         public String toString() {
-            return "TransitionCost{" + "trans=" + trans + ", sum=" + sum + ", costs="+costs  + '}';
+            return "TransitionCost{" + "trans=" + trans + ", sum=" + sum + ", costs=" + costs + '}';
         }
-        
-        
 
     } // Transition Cost
-    
-    public static final class TotalCost{
-        List<TransitionCost> it=new ArrayList<>(512);
-        int sum=0;
-        
-        public void addAll(Collection<TransitionCost> them){
+
+    public static final class TotalCost {
+
+        int through[] = new int[Utils.NBZONE];
+        int used[] = new int[Utils.NBZONE];
+        int UsedThrough[] = new int[Utils.NBZONE];
+
+        List<TransitionCost> it = new ArrayList<>(512);
+        int sum = 0;
+
+        public void addAll(Collection<TransitionCost> them) {
             it.clear();
             it.addAll(them);
-            Collections.sort(it);         
+            Collections.sort(it);
+
+            for (TransitionCost tc : it) {
+                sum += tc.sum;
+            }
             
-            for(TransitionCost tc : it){
-                sum+=tc.sum;
+            for(int i=0;i<through.length;i++){
+                UsedThrough[i]=used[i]-through[i];
             }
         }
-        
-        @Override
-        public String toString(){
-        String res="";
-        
 
-                for(TransitionCost tc : it){
-                    res+=""+tc+"\n";
-                }     
-                
-                
-                res+="Total "+sum;
-                return res;
+        @Override
+        public String toString() {
+            String res = "";
+
+            for (TransitionCost tc : it) {
+                res += "" + tc + "\n";
+            }
+
+            res += "Total " + sum+"\n";
+            res+="THRO"+Arrays.toString(through)+"\n";
+            res+="USED"+Arrays.toString(used)+"\n";
+            res+="DIFF"+Arrays.toString(UsedThrough)+"\n";
+            return res;
         }
     }
 
-    
     HashMap<String, TransitionCost> transCost = null;
-    
-    
-    
-    List<TransitionCost> optimized=new ArrayList<>(5000);
-    public TotalCost calced=null;
-    
+
+    List<TransitionCost> optimized = new ArrayList<>(5000);
+    public TotalCost calced = null;
+
     public TotalCost calcGreedyCost(String s) {
-        {
-            String in = " " + s;
-            transCost = new HashMap<>(510);
+        TotalCost res = new TotalCost();
 
-            int len = s.length();
+        String in = " " + s;
+        transCost = new HashMap<>(510);
 
-            int costAt[] = new int[Utils.NBZONE];
-            int costFor[] = new int[Utils.NBZONE];
-            int totCost[] = new int[Utils.NBZONE];
+        int len = s.length();
 
-            World w = new World();
+        int costAt[] = new int[Utils.NBZONE];
+        int costFor[] = new int[Utils.NBZONE];
+        int totCost[] = new int[Utils.NBZONE];
 
-            for (int i = 1; i < len; i++) {
-                char c = in.charAt(i);
+        World w = new World();
 
-                for (int z = 0; z < Utils.NBZONE; z++) {
-                    costAt[z] = w.pureCostFor(z, c);
-                    costFor[z] = w.playerCostFor(z);
-                    totCost[z] = Math.abs(costAt[z]) + Math.abs(costFor[z]);
-                }
+        for (int i = 1; i < len; i++) {
+            char c = in.charAt(i);
 
-                int theMin = Utils.firstMinFor(totCost);
-                int minCost= totCost[theMin];
-                
-                String tra=in.substring(i-1,i+1);
-                //System.err.println(""+tra+" "+minCost);
-                if(!transCost.containsKey(tra)){
-                    transCost.put(tra, new TransitionCost(tra));
-                }
-                transCost.get(tra).addCost(minCost);
-
-                //System.out.println(""+Arrays.toString(totCost));
-                //System.out.println("Min is "+theMin);
-                int rund = costFor[theMin];
-                int dist = costAt[theMin];
-                while (rund < 0) {
-                    w.decPlayer();
-                    rund++;
-                }
-                while (rund > 0) {
-                    w.incPlayer();
-                    rund--;
-                }
-
-                if (dist < 0) {
-                    while (w.currZone().getCurr() != c) {
-                        w.decRune();
-                    }
-                } else if (dist > 0) {
-                    while (w.currZone().getCurr() != c) {
-                        w.incRune();
-                    }
-                }
-
-                w.outRune();
-
+            for (int z = 0; z < Utils.NBZONE; z++) {
+                costAt[z] = w.pureCostFor(z, c);
+                costFor[z] = w.playerCostFor(z);
+                totCost[z] = Math.abs(costAt[z]) + Math.abs(costFor[z]);
             }
 
+            int theMin = Utils.firstMinFor(totCost);
+            int minCost = totCost[theMin];
+
+            String tra = in.substring(i - 1, i + 1);
+            //System.err.println(""+tra+" "+minCost);
+            if (!transCost.containsKey(tra)) {
+                transCost.put(tra, new TransitionCost(tra));
+            }
+            transCost.get(tra).addCost(minCost);
+
+                //System.out.println(""+Arrays.toString(totCost));
+            //System.out.println("Min is "+theMin);
+            int rund = costFor[theMin];
+            int dist = costAt[theMin];
+            while (rund < 0) {
+                res.through[w.playerZone]++;
+                w.decPlayer();
+
+                rund++;
+            }
+            while (rund > 0) {
+                res.through[w.playerZone]++;
+                w.incPlayer();
+                rund--;
+            }
+            res.used[w.playerZone]++;            
+
+            if (dist < 0) {
+                while (w.currZone().getCurr() != c) {
+                    w.decRune();
+                }
+            } else if (dist > 0) {
+                while (w.currZone().getCurr() != c) {
+                    w.incRune();
+                }
+            }
+
+            w.outRune();
+
         }
-        
-        
-        TotalCost res=new TotalCost();
+
         res.addAll(transCost.values());
-        calced=res;
+        calced = res;
         return res;
 
     }    // GreedyCalc
-    
-
 
 }
