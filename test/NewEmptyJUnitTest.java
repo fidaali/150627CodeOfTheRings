@@ -6,6 +6,7 @@
 
 import contest.Solver002;
 import contest.Solver003;
+import contest.Solver004_greedySimple;
 import contest.SolverInterface;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -42,7 +43,7 @@ public class NewEmptyJUnitTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-     @Test
+     //@Test
     public void Solver002() {
          //assertEquals("Text", "Text");
         
@@ -87,4 +88,27 @@ public class NewEmptyJUnitTest {
          
         
     }    
+    
+     @Test
+    public void Solver004() {
+        
+        try{
+            throw new RuntimeException();
+        }catch(Exception e){
+            System.out.println(""+e.getStackTrace()[0]);
+        }        
+         //assertEquals("Text", "Text");
+        
+         SolverInterface solv=new Solver004_greedySimple();
+         
+         String bigIn="THREE RINGS FOR THE ELVEN KINGS UNDER THE SKY SEVEN FOR THE DWARF LORDS IN THEIR HALLS OF STONE NINE FOR MORTAL MEN DOOMED TO DIE ONE FOR THE DARK LORD ON HIS DARK THRONEIN THE LAND OF MORDOR WHERE THE SHADOWS LIE ONE RING TO RULE THEM ALL ONE RING TO FIND THEM ONE RING TO BRING THEM ALL AND IN THE DARKNESS BIND THEM IN THE LAND OF MORDOR WHERE THE SHADOWS LIE";
+         
+         solv.input(""+bigIn);
+         
+         solv.output();
+         
+         System.out.println(""+solv);
+         
+        
+    }        
 }

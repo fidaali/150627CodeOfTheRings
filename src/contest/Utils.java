@@ -12,15 +12,31 @@ package contest;
  */
 public class Utils {
     
+    public final static int NBLETTER=27;        
+    public final static int NBZONE=30;    
+    
     final static char ALLCHAR[]=new char[]{' ','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     final static int POS(char it){
         if(it==' ') return 0;
         return (it-'A')+1;
     }
     
+    public static int firstMinFor(int[] tab){
+        int res=-1;
+        int currMin=Integer.MAX_VALUE;
+        
+        for(int i=0;i<tab.length;i++){
+            if(currMin>tab[i]){
+                res=i;
+                currMin=tab[i];
+            }
+        }
+        return res;
+    }
+    
     public static class ZState{
         private int c=0;
-        final static int NBLETTER=27;
+        
     
         public void inc(){
             c++; c=c%NBLETTER;        
@@ -67,13 +83,15 @@ public class Utils {
         StringBuilder emits=new StringBuilder(4000);
         int playerZone=0;
         
-        final static int NBZONE=30;
-        
         public ZState[] zone=new ZState[30];
         {
             for(int i=0;i<zone.length;i++){
                 zone[i]=new ZState();
             }
+        }
+        
+        public ZState currZone(){
+            return zone[playerZone];
         }
     
         public int pureCostFor(int i,char c){
