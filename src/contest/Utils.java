@@ -103,11 +103,11 @@ public class Utils {
         }        
         
         public void incPlayer(){
-            playerZone++; playerZone=playerZone%30;        
+            playerZone++; playerZone=playerZone%NBZONE;        
             instruct.append(">");
         };
         public void decPlayer(){
-            playerZone--;playerZone=playerZone&255;    
+            playerZone--;playerZone=(playerZone+NBZONE)%NBZONE;    
             instruct.append("<");
         };
         
