@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package contest;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.List;
  *
  * @author Jahan
  */
-public class GreedyTools {
+public class GreedyTools2 {
 
     public final static int NBLETTER = 27;
     public final static int NBZONE = 30;
@@ -170,13 +171,38 @@ public class GreedyTools {
         }
     }
 
-
-
-
     HashMap<String, TransitionCost> transCost = null;
 
     List<TransitionCost> optimized = new ArrayList<>(5000);
     public TotalCost calced = null;
+    
+    static final class TransPos{
+        int a;
+        int b;
+    
+    }
+    
+    String reservedAt[] = new String[Utils.NBZONE];
+    HashMap<String, TransPos> foundThere=new HashMap<>();
+    
+    public void prepareOptimize(TotalCost tc, List<TransitionCost> optimized){
+        TransitionCost found=null;
+        for(TransitionCost t : tc.it){
+            if(!optimized.contains(t)){
+                found=t;
+                break;
+            }
+        }
+        
+        System.out.println("Precedent optimize "+optimized);
+        System.out.println("Found "+found);
+        
+        this.optimized.addAll(optimized);
+        if(found!=null);
+        this.optimized.add(found);
+        
+        
+    }
 
     public TotalCost calcGreedyCost(String s) {
         TotalCost res = new TotalCost();

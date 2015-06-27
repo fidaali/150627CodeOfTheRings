@@ -5,6 +5,7 @@
  */
 
 import contest.GreedyTools;
+import contest.GreedyTools2;
 import contest.OracleWorld;
 import contest.Solver002;
 import contest.Solver003;
@@ -12,6 +13,7 @@ import contest.Solver004_greedySimple;
 import contest.Solver005;
 import contest.SolverInterface;
 import contest.SubStringFrequency;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -82,6 +84,9 @@ public class NewEmptyJUnitTest {
 
         gt.calcGreedyCost(bigIn);
         System.out.println(gt.calced);
+        
+        GreedyTools2 gt2=new GreedyTools2();
+        gt2.prepareOptimize(gt.calced, new ArrayList<>());
         
     }
 
