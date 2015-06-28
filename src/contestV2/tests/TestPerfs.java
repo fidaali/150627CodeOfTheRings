@@ -101,10 +101,10 @@ public class TestPerfs {
     }
     
     public static void testCollectionStandardSeveral(){
+        System.out.println("++++++++ FULL TEST ++++++++");
+        
         ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
-        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
-        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
         toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
         
         
@@ -136,8 +136,8 @@ public class TestPerfs {
     }
     
     public static void main(String args[]){
-        testCollectionStandardSeveral();
-        //testDetail();
+        testDetail();
+        testCollectionStandardSeveral();        
         
     }
 }
