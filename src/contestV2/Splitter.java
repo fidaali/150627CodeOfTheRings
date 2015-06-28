@@ -26,6 +26,12 @@ public class Splitter {
     public static class RepeatPattern{
         int nbRepeat;
         String pattern;
+
+        @Override
+        public String toString() {
+            return "RepeatPattern{" + "nbRepeat=" + nbRepeat + ", pattern=" + pattern + '}';
+        }
+        
         
     }
     
@@ -38,24 +44,31 @@ public class Splitter {
         while(tryWith<nbC){
             char first=input.charAt(tryWith);
             char c=first;
-            int nb=tryWith;
-            while(c==first && nb+nbC < input.length()){
-                nb+=nbC;
-                c=input.charAt(nb);
+            int index=tryWith;
+            int nb=0;
+            while(c==first && index+nbC < input.length()){
+                //System.err.println("first "+first+" "+c+"  nbC "+nbC+"  carTry "+tryWith+"  count="+nb+" index "+index);
+                nb++;
+                index+=nbC;
+                c=input.charAt(index);
             }
             if(nb>=4){
+                System.err.println("first "+first+" "+c+"  nbC "+nbC+"  carTry "+tryWith+"  count="+nb+" index "+index);
                confirmation=Math.min(nb, confirmation);
+               if(tryWith==nbC-1){
+                    res.pattern=""+input.substring(0,nbC);
+                    res.nbRepeat=confirmation;
+                    
+                    System.err.println(" found pattern "+res);
+                    return res;                       
+               }
+               
             }            else{
-                confirmation=0;break;
+                break;
             }
             tryWith++;
         }
 
-        if(confirmation>=4){                
-                res.pattern=""+input.substring(0,confirmation);
-                res.nbRepeat=confirmation;
-                return res;        
-        }
         return null;
     }
     

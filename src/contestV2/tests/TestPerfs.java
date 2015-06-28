@@ -149,7 +149,7 @@ public class TestPerfs {
         ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
         
-        toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
+        //toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
         toApply.add((e)-> new Solver_001(e)::apply);        
         testDetail(toTest, toApply);
        
