@@ -25,6 +25,28 @@ public class Testeur {
             to.apply(res);
         }
         
+        public String leftOver(){
+            String d=done();
+            if(!toSolve.startsWith(d)) throw new RuntimeException("Emit differe de demande !");
+            return toSolve.substring(d.length());
+        }
+        
+        public String done(){
+            return res.done.toString();
+        }
+        
+        public int stepCost(){
+            return res.steps;
+        }
+        
+        public int instCost(){
+            return res.programApplied.length();
+        }
+        
+        public String program(){
+            return res.programApplied.toString();
+        }
+        
         
         
         
