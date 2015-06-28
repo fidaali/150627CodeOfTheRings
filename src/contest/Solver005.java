@@ -11,77 +11,68 @@ package contest;
  * @author Jahan
  */
 public class Solver005 implements SolverInterface{
-    
-    Utils.World w=new Utils.World();
 
     String in=null;
     int len=-1;
     
-    SuffixTool.CompactSuffixTree suffixTree =null;
+    String[] progs=new String[]{"","-[+<--<<+>---><]"};
     
     @Override
     public void input(String in) {
         this.in=in;
-        len=in.length();
-        
-        suffixTree = new SuffixTool.CompactSuffixTree(new SuffixTool.SimpleSuffixTree(in));        
+        len=in.length();    
     }
 
     @Override
     public String output() {
+                
+        GreedyTools greed=new GreedyTools();
+        greed.calcGreedyCost(in);
+        int best=        greed.calced.sum;
+        int bestProgInt=0;
+        //System.out.println("" + greed.calced.sum);
+        ProgRand prand=new ProgRand(28884);        
         
-        int costAt[]=new int[Utils.NBZONE];
-        int costFor[]=new int[Utils.NBZONE];
-        int totCost[]=new int[Utils.NBZONE];
-        
-        for(int i =0;i<len;i++){
-            char c=in.charAt(i);
-            
-            for(int z=0;z<Utils.NBZONE;z++){
-                costAt[z]=w.pureCostFor(z, c);      
-                costFor[z]=w.playerCostFor(z);
-                totCost[z]=Math.abs(costAt[z])+Math.abs(costFor[z]);
-            }
-
-            int theMin=Utils.firstMinFor(totCost);
-            
-            //System.out.println(""+suffixTree.root);
-            
-            //System.out.println(""+Arrays.toString(totCost));
-            //System.out.println("Min is "+theMin);
-            
-            int rund=costFor[theMin];
-            int dist=costAt[theMin];
-            while(rund<0){
-                w.decPlayer();
-                rund++;
-            }
-            while(rund>0){
-                w.incPlayer();
-                rund--;
-            }
-            
-            if(dist<0){
-                while(w.currZone().getCurr()!=c){
-                    w.decRune();
-                }                
-            }else if(dist >0){
-                while(w.currZone().getCurr()!=c){
-                    w.incRune();
-                }                  
-            }
-
-            w.outRune();
-        
+        for(int i=1;i<progs.length;i++){
+            greed.w.reset();            
+             String prog=""+progs[i];
+            try{               
+                OracleWorld.interpret(prog, greed.w);      
+                greed.w.clearInstruction();
+                    //System.err.println(""+nbBoucle+" "+prog+" -> "+w.debug_worldState()+" (nbInst) "+w.instruct.length());
+                    greed.calcGreedyCost(in);                    
+                    int sc=greed.calced.sum+prog.length();                    
+                    if(sc<best){
+                        bestProgInt=i;
+                        best=sc;
+                        //System.out.println("Score " + sc); 
+                        //System.out.println("prog " + prog); 
+                    }                                
+            }catch(Exception e){
+               // System.err.println(""+i+" "+prog+" "+e);
+               // e.printStackTrace();
+            }            
         }        
+        {
+           greed.w.reset();            
+             String prog=""+progs[bestProgInt];
+            try{               
+                OracleWorld.interpret(prog, greed.w);      
+                greed.w.clearInstruction();
+                    //System.err.println(""+nbBoucle+" "+prog+" -> "+w.debug_worldState()+" (nbInst) "+w.instruct.length());
+                    greed.calcGreedyCost(in);                                                                
+            }catch(Exception e){
+               // System.err.println(""+i+" "+prog+" "+e);
+               // e.printStackTrace();
+            }                        
+        }
         
-        return w.instruct.toString();
+        
+        return progs[bestProgInt]+greed.w.instruct.toString();
     }
     
     public String toString(){
-        String res=w.instruct+"\n";
-        res+=""+w.emits+"\n";
-        res+="TOTAL = "+w.instruct.length();
+        String res="NO DATA";
         
         return res;
     }

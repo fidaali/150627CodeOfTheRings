@@ -70,7 +70,7 @@ public class NewEmptyJUnitTest {
         }
     }
     
-    @Test
+    //@Test
     public void transCostTest(){
         try {
             throw new RuntimeException();
@@ -166,7 +166,7 @@ public class NewEmptyJUnitTest {
 
     }
 
-    //@Test
+    @Test
     public void Solver004() {
 
         try {

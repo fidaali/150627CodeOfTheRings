@@ -83,6 +83,11 @@ public class Utils {
         StringBuilder emits=new StringBuilder(4000);
         int playerZone=0;
         
+        public void clearInstruction(){
+            instruct=new StringBuilder(4000);
+            emits=new StringBuilder(4000);            
+        }
+        
         public void reset(){
             playerZone=0;
             instruct=new StringBuilder(4000);
