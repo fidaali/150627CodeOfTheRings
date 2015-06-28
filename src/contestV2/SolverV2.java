@@ -16,6 +16,8 @@ public class SolverV2 {
         final StringBuilder done=new StringBuilder(512);
         final StringBuilder programApplied=new StringBuilder(512);
         final WorldV2 w=new WorldV2();
+        
+        int steps=0;
 
         public Output() {
         }

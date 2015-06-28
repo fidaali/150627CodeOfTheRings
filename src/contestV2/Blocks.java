@@ -14,6 +14,7 @@ public class Blocks {
     public static final SolverV2.SolverV2I emitAtCursor = (SolverV2.Output in) -> {
         in.programApplied.append(in.w.outRune());
         in.done.append(in.w.currZone().getCurr());
+        in.steps++;
         return in;
     };
     
@@ -34,10 +35,12 @@ public class Blocks {
             int cost = in.w.playerCostFor(c);
             while (cost > 0) {
                 in.programApplied.append(in.w.decRune());
+                in.steps++;
                 cost--;
             }
             while (cost < 0) {
                 in.programApplied.append(in.w.incRune());
+                in.steps++;
                 cost++;
             }
 
