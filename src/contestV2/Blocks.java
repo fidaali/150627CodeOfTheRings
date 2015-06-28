@@ -32,14 +32,14 @@ public class Blocks {
 
         @Override
         public SolverV2.Output apply(SolverV2.Output in) {
-            int cost = in.w.playerCostFor(c);
+            int cost = in.w.pureCostFor(in.w.playerZone, c);
             while (cost > 0) {
-                in.programApplied.append(in.w.decRune());
+                in.programApplied.append(in.w.incRune());
                 in.steps++;
                 cost--;
             }
             while (cost < 0) {
-                in.programApplied.append(in.w.incRune());
+                in.programApplied.append(in.w.decRune());
                 in.steps++;
                 cost++;
             }
