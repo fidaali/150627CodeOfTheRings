@@ -13,6 +13,39 @@ import java.util.List;
  * @author Jahan
  */
 public class SolverV2 {
+    
+        public static char inc(char d) {
+            int c=convToIndex(d);
+            
+            c++;
+            c = c % NBLETTER;
+            
+            return ALLCHAR[c];
+        }
+
+        ;
+        public static char dec(char d) {
+            int c=convToIndex(d);
+            
+            c--;
+            c = (c + NBLETTER) % NBLETTER;
+            return ALLCHAR[c];
+        }      
+    
+    
+        public static int inc(int c) {
+            c++;
+            c = c % NBLETTER;
+            
+            return c;
+        }
+
+        ;
+        public static int dec(int c) {
+            c--;
+            c = (c + NBLETTER) % NBLETTER;
+            return c;
+        }    
 
     public static class Output {
 

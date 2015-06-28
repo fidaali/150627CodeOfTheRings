@@ -154,7 +154,66 @@ public class Blocks {
         }
     }      
     
-    public static class Sol_repeatPattern implements SolverV2.FunctionV2I {
+    public static class Sol_repeatPatternInc implements SolverV2.FunctionV2I {
+        
+        final String toEmit;
+        final int sz;
+        final int nb;
+
+        public Sol_repeatPatternInc(String in,int sz,int nb) {
+            this.toEmit = in;
+            this.sz=sz;
+            this.nb=nb;
+        }
+                
+
+        @Override
+        public SolverV2.Output apply(SolverV2.Output o) {
+            int len = nb ;
+            char c = toEmit.charAt(0);
+            Blocks.seGreedy(SolverV2.dec(c)).apply(o);
+            for(int i=1;i<sz;i++){
+                //System.out.println(""+o.w.debug_worldState());
+                Blocks.setCursorTo(o.w.playerZone+1).apply(o);
+                
+                char thc=toEmit.charAt(i);
+                //for(int k=0;k<i;k++){
+                    //thc=SolverV2.inc(thc);
+               // }
+                thc=SolverV2.dec(thc);
+                Blocks.setAtCursor(thc).apply(o);
+                
+                //System.out.println(""+o.w.debug_worldState());
+            }
+            for(int i=1;i<sz;i++){
+                Blocks.setCursorTo(o.w.playerZone-1).apply(o);
+                char thc=toEmit.charAt(i);
+                thc=SolverV2.dec(thc);
+                Blocks.setAtCursor(thc).apply(o);
+            }
+            
+            
+            if(len>=SolverV2.NBLETTER) len=SolverV2.NBLETTER-1;
+            
+            Blocks.setCursorTo(o.w.playerZone-1).apply(o);
+            Blocks.setAtCursor(SolverV2.ALLCHAR[len]).apply(o);
+            String prog="[-";
+            for(int i=0;i<sz;i++){
+                prog+=">+.";
+            }
+            for(int i=0;i<sz;i++){
+                prog+="<";
+            }           
+            prog+="]";
+            
+            o.loop(prog);
+            
+            return o;
+        }
+    }        
+    
+    
+        public static class Sol_repeatPattern implements SolverV2.FunctionV2I {
         
         final String toEmit;
         final int sz;
@@ -199,5 +258,5 @@ public class Blocks {
             
             return o;
         }
-    }        
+    }     
 }

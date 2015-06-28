@@ -46,6 +46,23 @@ public class Solver_001 implements SolverV2.FunctionV2I {
 
             currSz++;
         }
+        maxSz=3;
+        currSz = 1;        
+        while (rp == null && currSz < maxSz) {
+            rp = split.extractRepeatWithInc(currSz);
+            if (rp != null ) {
+               // System.out.println("Found Pattern" + rp);
+
+                List<Testeur.TestOne> them = Testeur.newListTestOne();
+                them.add(new Testeur.TestOne(toEmit, o.w, new Blocks.Sol_repeatPatternInc(toEmit,rp.pattern.length(),rp.nbRepeat)::apply));
+                them.add(new Testeur.TestOne(toEmit, o.w, new SimpleStrat.Solve_greedy(toEmit)::apply));
+
+                return Testeur.applyBest(them, o);
+            }
+
+            currSz++;
+        }        
+        
         {
                 List<Testeur.TestOne> them = Testeur.newListTestOne();
                 final String[] progs=new String[]{""

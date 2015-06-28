@@ -35,6 +35,48 @@ public class Splitter {
         
     }
     
+public RepeatPattern extractRepeatWithInc(int nbC){
+        RepeatPattern res=new RepeatPattern();
+        
+        int tryWith=0;
+        int confirmation=Integer.MAX_VALUE;
+        
+        while(tryWith<nbC){
+            char first=input.charAt(tryWith);
+            char c=first;
+            int index=tryWith;
+            int nb=0;
+            while(c==first && index+nbC < input.length()){
+                //System.err.println("first "+first+" "+c+"  nbC "+nbC+"  carTry "+tryWith+"  count="+nb+" index "+index);
+                nb++;
+                index+=nbC;
+                c=input.charAt(index);
+                
+                int tmp=SolverV2.convToIndex(first);
+                tmp++;
+                tmp=tmp%SolverV2.NBLETTER;
+                first=SolverV2.ALLCHAR[tmp];
+            }
+            if(nb>=4){
+               // System.err.println("first "+first+" "+c+"  nbC "+nbC+"  carTry "+tryWith+"  count="+nb+" index "+index);
+               confirmation=Math.min(nb, confirmation);
+               if(tryWith==nbC-1){
+                    res.pattern=""+input.substring(0,nbC);
+                    res.nbRepeat=confirmation+1;
+                    
+                    //System.err.println(" found pattern "+res);
+                    return res;                       
+               }
+               
+            }            else{
+                break;
+            }
+            tryWith++;
+        }
+
+        return null;
+    }    
+    
     public RepeatPattern extractRepeat(int nbC){
         RepeatPattern res=new RepeatPattern();
         
