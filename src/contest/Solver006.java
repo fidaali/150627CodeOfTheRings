@@ -25,23 +25,31 @@ public class Solver006 implements SolverInterface {
         res += "<";
 
         int putLet = nb % (Utils.NBLETTER - 1);
+
+        if (putLet == 0 && nb != 0) {
+            putLet = (Utils.NBLETTER - 1);
+        }
         int rest = nb - putLet;
+        //System.err.println("nb " + nb + " rest" + rest + " putLet " + putLet);
 
         if (putLet > 0) {
             res += putLetterOnEmpty(Utils.ALLCHAR[putLet]);
-        }
-        
-        res+="[>.<-]";
+            res += "[>.<-]";
 
-        while (rest > 0) {
-            nb = rest;
+            while (rest > 0) {
 
-            putLet = nb % (Utils.NBLETTER - 1);
-            rest = nb - putLet;
+                putLet = rest % (Utils.NBLETTER - 1);
+                int oldNb=rest;
+                if (putLet == 0 ) {
+                    putLet = (Utils.NBLETTER - 1);
+                }
+                rest = oldNb - putLet;
+               // System.err.println(" rest" + rest + " putLet " + putLet);
 
-            if (putLet > 0) {
-                res += putLetterOnEmpty(Utils.ALLCHAR[putLet]);
+                    res += putLetterOnEmpty(Utils.ALLCHAR[putLet]);
+                    res += "[>.<-]";                    
             }
+
         }
 
         return res;
@@ -69,7 +77,7 @@ public class Solver006 implements SolverInterface {
         int nbOne = isOneLetter();
         if (nbOne > 0) {
             char letter = in.charAt(0);
-            System.out.println("detected single letter " + letter + " " + nbOne + "  time");
+            //System.out.println("detected single letter " + letter + " " + nbOne + "  time");
             out = genOneLetterRepeatProg(letter, nbOne);
             return true;
 

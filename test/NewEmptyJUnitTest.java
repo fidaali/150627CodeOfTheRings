@@ -230,7 +230,7 @@ public class NewEmptyJUnitTest {
     
         {
             String bigIn = "";
-            for(int i=0;i<31;i++){
+            for(int i=0;i<70;i++){
                 bigIn+="Z";
             }
 
