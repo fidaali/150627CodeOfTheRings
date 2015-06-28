@@ -75,6 +75,31 @@ import org.omg.CORBA.INTERNAL;
  * @author Jahan
  */
 public class Main {
+    
+    public static void exploreProgramation() {
+        String[] progs=new String[]{""
+            //,"-[>+.<-]" //ABCDEFGHIJKLMNOPQRSTUVWXYZ
+           // ,"++++[>++.<-]" //BDFH
+                ,"+++[>+.-<-]" //H
+        };  
+        
+        int nbBoucle = progs.length-1;
+        Utils.World w=new Utils.World();
+        for( String prog : progs) {
+           System.out.println(""+prog);
+            try {
+                w.reset();
+                String res=OracleWorld.interpret(prog, w);
+                System.out.println("state |"+w.debug_worldState());
+                System.out.println("res |"+res);
+
+            } catch (Exception e) {
+               // System.err.println(""+i+" "+prog+" "+e);
+                 e.printStackTrace();
+            }
+
+        }            
+    }
 
     public static void exploreRingLeader() {
         //final String longSpell = "THREE RINGS FOR THE ELVEN KINGS UNDER THE SKY SEVEN FOR THE DWARF LORDS IN THEIR HALLS OF STONE NINE FOR MORTAL MEN DOOMED TO DIE ONE FOR THE DARK LORD ON HIS DARK THRONEIN THE LAND OF MORDOR WHERE THE SHADOWS LIE ONE RING TO RULE THEM ALL ONE RING TO FIND THEM ONE RING TO BRING THEM ALL AND IN THE DARKNESS BIND THEM IN THE LAND OF MORDOR WHERE THE SHADOWS LIE";
@@ -231,7 +256,9 @@ public class Main {
     public static void main(String[] args) {
         //exploreInitialState();
         //exploreRingLeader();
-        exploreInitialStateFixed();
+        //exploreInitialStateFixed();
+        
+        exploreProgramation();
     }
 
 }

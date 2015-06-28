@@ -20,12 +20,6 @@ public class GreedyTools {
 
     final static char ALLCHAR[] = new char[]{' ', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
 
-    final static int POS(char it) {
-        if (it == ' ') {
-            return 0;
-        }
-        return (it - 'A') + 1;
-    }
 
     public static int firstMinFor(int[] tab) {
         int res = -1;
@@ -43,6 +37,8 @@ public class GreedyTools {
     public static class ZState {
 
         private int c = 0;
+        
+
 
         public void inc() {
             c++;
@@ -66,7 +62,7 @@ public class GreedyTools {
         public int cost(char dest) {
             //System.err.println("cost from "+ALLCHAR[c]+" to "+dest);
 
-            int p = POS(dest);
+            int p = Utils.convToIndex(dest);
             if (p == c) {
                 return 0;
             }

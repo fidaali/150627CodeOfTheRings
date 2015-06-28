@@ -16,7 +16,7 @@ public class Utils {
     public final static int NBZONE=30;    
     
     final static char ALLCHAR[]=new char[]{' ','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-    final static int POS(char it){
+    final static int convToIndex(char it){
         if(it==' ') return 0;
         return (it-'A')+1;
     }
@@ -54,7 +54,7 @@ public class Utils {
         public int cost(char dest){
             //System.err.println("cost from "+ALLCHAR[c]+" to "+dest);
             
-            int p=POS(dest);
+            int p=convToIndex(dest);
             if(p==c) return 0;
             
             // by ++ dist

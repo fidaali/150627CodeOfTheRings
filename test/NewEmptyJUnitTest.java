@@ -11,6 +11,7 @@ import contest.Solver002;
 import contest.Solver003;
 import contest.Solver004_greedySimple;
 import contest.Solver005;
+import contest.Solver006;
 import contest.SolverInterface;
 import contest.SubStringFrequency;
 import contest.Utils;
@@ -166,7 +167,7 @@ public class NewEmptyJUnitTest {
 
     }
 
-    @Test
+    //@Test
     public void Solver004() {
 
         try {
@@ -188,7 +189,7 @@ public class NewEmptyJUnitTest {
 
     }
 
-    @Test
+    //@Test
     public void Solver005() {
 
         try {
@@ -217,6 +218,34 @@ public class NewEmptyJUnitTest {
         System.out.println("Resp len " + out.length());
         System.out.println("" + OracleWorld.interpret(out,new Utils.World()));
 
+    }
+    
+    @Test
+    public void Solver006(){
+        try {
+            throw new RuntimeException();
+        } catch (Exception e) {
+            System.out.println("" + e.getStackTrace()[0]);
+        }        
+    
+        {
+            String bigIn = "";
+            for(int i=0;i<31;i++){
+                bigIn+="Z";
+            }
+
+            Solver006 solv=new Solver006() ;
+
+            solv.input(bigIn);
+            if(solv.applicable()){
+                System.err.println("is applicable");
+                String out = solv.output();
+                assertEquals(""+bigIn, OracleWorld.interpret(out,new Utils.World()));
+                System.out.println("Prog = "+out);
+            }else{
+                throw new RuntimeException("Supposed to be applicable");
+            }
+        }
     }
 
 }
