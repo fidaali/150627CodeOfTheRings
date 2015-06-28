@@ -58,14 +58,7 @@ public class TestPerfs {
         }          
     }
     
-    public static void testDetail(){    
-        
-        ProblemCollectionI toTest=ProblemCollection.officialToSolve();
-        List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
-        //toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
-        toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
-        
-        
+    public static void testDetail(ProblemCollectionI toTest,List<SolverV2.SolveurV2I> toApply){                    
         for(SolverV2.SolveurV2I sol : toApply){
             long t0=System.currentTimeMillis();
             
@@ -137,9 +130,20 @@ public class TestPerfs {
         checkOracle(toApply, toTest);         
     }
     
+    
+    public static void testOneLetter(){
+        ProblemCollectionI toTest=ProblemCollection.oneLetterPattern();
+        List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
+        toApply.add((e)-> new SimpleStrat.Solve_repeatOneLetter(e)::apply);
+
+        testDetail(toTest, toApply);
+    }
+    
     public static void main(String args[]){
-        testDetail();
-        testCollectionStandardSeveral();        
+        testOneLetter();
+        
+       // testDetail();
+       // testCollectionStandardSeveral();        
         
     }
 }

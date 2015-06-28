@@ -22,6 +22,16 @@ public class Blocks {
     public static final SolverV2.FunctionV2I setAtCursor(char c){
         return new Sol_setAtCursor(c); 
     }
+    public static final SolverV2.FunctionV2I setCursorTo(int c){
+        //System.err.println("whant to get to "+c);
+        
+        if(c<0){ c+=SolverV2.NBZONE;}
+        //System.err.println("whant to get to "+c);
+        c=c%SolverV2.NBZONE;
+        //System.err.println(" really whant to get to "+c);
+        
+        return new Sol_setCursorTo(c); 
+    }    
     
     public static final SolverV2.FunctionV2I seGreedy(char c){
         return new Sol_setGreedy(c); 
@@ -91,11 +101,13 @@ public class Blocks {
 
         Sol_setCursorTo(int c) {
             this.c = c;
+            //System.err.println("going to this "+c);            
         }
 
         @Override
         public SolverV2.Output apply(SolverV2.Output in) {
             int cost = in.w.playerCostFor(c);
+            //System.err.println("going from "+in.w.playerZone+" to "+c+" cost is "+cost);
             while (cost > 0) {
                 in.programApplied.append(in.w.incPlayer());
                 in.steps++;

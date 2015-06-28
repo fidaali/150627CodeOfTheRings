@@ -50,4 +50,16 @@ public class ProblemCollection {
         
         return () -> res;
     }
+    
+    
+    public static final ProblemCollectionI oneLetterPattern(){
+        final List<String> res=new ArrayList<>();
+        
+        res.add("OOOOOOOOOOOOOOO");
+        res.add("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        //res.add("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+        //res.add("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+        
+        return () -> res;
+    }    
 }
