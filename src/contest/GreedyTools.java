@@ -92,84 +92,6 @@ public class GreedyTools {
         }
     }
 
-    public static class World {
-
-        StringBuilder instruct = new StringBuilder(4000);
-        StringBuilder emits = new StringBuilder(4000);
-        int playerZone = 0;
-
-        public ZState[] zone = new ZState[30];
-
-        {
-            for (int i = 0; i < zone.length; i++) {
-                zone[i] = new ZState();
-            }
-        }
-
-        public ZState currZone() {
-            return zone[playerZone];
-        }
-
-        public int pureCostFor(int i, char c) {
-            return zone[i].cost(c);
-        }
-
-        public int playerCostFor(int i) {
-            int p = i;
-            int c = playerZone;
-            if (p == c) {
-                return 0;
-            }
-
-            // by ++ dist
-            final int byPlus;
-            final int byMinus;
-
-            if (p > c) {
-                byPlus = p - c;
-                byMinus = c - p + NBZONE;
-            } else { // p<c
-                byMinus = c - p;
-                byPlus = c - p + NBZONE;
-            }
-
-            if (byMinus < byPlus) {
-                return -byMinus;
-            }
-            return byPlus;
-        }
-
-        public void incPlayer() {
-            playerZone++;
-            playerZone = playerZone % NBZONE;
-            instruct.append(">");
-        }
-
-        ;
-        public void decPlayer() {
-            playerZone--;
-            playerZone = (playerZone + NBZONE) % NBZONE;
-            instruct.append("<");
-        }
-
-        ;
-        
-        public void incRune() {
-            zone[playerZone].inc();
-            instruct.append("+");
-        }
-
-        public void decRune() {
-            zone[playerZone].dec();
-            instruct.append("-");
-        }
-
-        public void outRune() {
-            instruct.append(".");
-            emits.append(ALLCHAR[zone[playerZone].c]);
-        }
-    }
-
 
 
 
@@ -177,6 +99,8 @@ public class GreedyTools {
 
     List<TransitionCost> optimized = new ArrayList<>(5000);
     public TotalCost calced = null;
+    
+        public Utils.World w = new Utils.World();    
 
     public TotalCost calcGreedyCost(String s) {
         TotalCost res = new TotalCost();
@@ -189,8 +113,6 @@ public class GreedyTools {
         int costAt[] = new int[Utils.NBZONE];
         int costFor[] = new int[Utils.NBZONE];
         int totCost[] = new int[Utils.NBZONE];
-
-        World w = new World();
 
         for (int i = 1; i < len; i++) {
             char c = in.charAt(i);

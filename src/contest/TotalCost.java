@@ -23,7 +23,7 @@ import java.util.List;
         int UsedThrough[] = new int[Utils.NBZONE];
 
         List<TransitionCost> it = new ArrayList<>(512);
-        int sum = 0;
+        public int sum = 0;
 
         public void addAll(Collection<TransitionCost> them) {
             it.clear();

@@ -79,9 +79,30 @@ public class Utils {
     }
     
     public static class World{
-        StringBuilder instruct=new StringBuilder(4000);
+        public StringBuilder instruct=new StringBuilder(4000);
         StringBuilder emits=new StringBuilder(4000);
         int playerZone=0;
+        
+        public void reset(){
+            playerZone=0;
+            instruct=new StringBuilder(4000);
+            emits=new StringBuilder(4000);
+            
+            for(int i=0;i<zone.length;i++){
+                zone[i]=new ZState();
+            }            
+        }
+        
+        public String debug_worldState(){
+            String res="[";
+            for(int i=0;i<zone.length;i++){
+                res+=zone[i].getCurr();
+            }
+            res+="]";
+            res=res.replace(" ", "#");
+            res+=" "+playerZone;
+            return res;
+        }
         
         public ZState[] zone=new ZState[30];
         {

@@ -13,6 +13,7 @@ import contest.Solver004_greedySimple;
 import contest.Solver005;
 import contest.SolverInterface;
 import contest.SubStringFrequency;
+import contest.Utils;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -57,13 +58,13 @@ public class NewEmptyJUnitTest {
         }
         {
             String in = "+..........................";
-            String out = OracleWorld.interpret(in);
+            String out = OracleWorld.interpret(in,new Utils.World());
 
             System.out.println("" + out);
         }
         {
             String in = "+>-[<.>-]";
-            String out = OracleWorld.interpret(in);
+            String out = OracleWorld.interpret(in,new Utils.World());
 
             System.out.println("" + out);
         }
@@ -214,7 +215,7 @@ public class NewEmptyJUnitTest {
 
         System.out.println("" + out);
         System.out.println("Resp len " + out.length());
-        System.out.println("" + OracleWorld.interpret(out));
+        System.out.println("" + OracleWorld.interpret(out,new Utils.World()));
 
     }
 

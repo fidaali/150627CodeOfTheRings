@@ -18,46 +18,54 @@ public class OracleWorld {
     
     
     
-    public static String interpret(String in){
-        Utils.World w=new Utils.World();
+    public static String interpret(String in,Utils.World w){
         
         int nbMax=4000;
         
         List<Integer> open=new ArrayList<>(4000);
+        
+        boolean ignore=false;
         
         for(int i=0;i<in.length();i++){
             char it=in.charAt(i);
             
             switch(it){
                 case '.': {
-                    w.outRune();
+                    if(!ignore) w.outRune();
                 } break;
                 case '<': {
-                    w.decPlayer();
+                    if(!ignore) w.decPlayer();
                 } break;
                 case '>': {
-                    w.incPlayer();
+                    if(!ignore) w.incPlayer();
                 } break;
                     
                 case '+': {
-                    w.incRune();
+                    if(!ignore) w.incRune();
                 } break;
                     
                 case '-': {
-                    w.decRune();
+                    if(!ignore) w.decRune();
                 } break;        
                     
                 case '[' :{
                     open.add(i);
-                }
+                    if(w.currZone().getCurr()==' '){
+                        ignore=true;
+                    }
+                } break;
                 
                 case ']' :{
-                    if(w.currZone().getCurr()==' '){
+
+                    
+                    if(w.currZone().getCurr()==' ' || ignore){
                         open.remove(open.size()-1);
                     }else{
                         i=open.get(open.size()-1);
                     }
-                }
+                    
+                    ignore=false;                    
+                } break;
             
             }
         

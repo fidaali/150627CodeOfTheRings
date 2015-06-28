@@ -63,17 +63,112 @@ Experiment with different techniques, if you have the guts!
 
 package pkg150627codeoftherings;
 
+import contest.GreedyTools;
+import contest.OracleWorld;
+import contest.ProgRand;
+import contest.Solver004_greedySimple;
+import contest.SolverInterface;
+import contest.Utils;
+
 /**
  *
  * @author Jahan
  */
 public class Main {
+    
+    public static void exploreRingLeader(){
+       final String longSpell = "THREE RINGS FOR THE ELVEN KINGS UNDER THE SKY SEVEN FOR THE DWARF LORDS IN THEIR HALLS OF STONE NINE FOR MORTAL MEN DOOMED TO DIE ONE FOR THE DARK LORD ON HIS DARK THRONEIN THE LAND OF MORDOR WHERE THE SHADOWS LIE ONE RING TO RULE THEM ALL ONE RING TO FIND THEM ONE RING TO BRING THEM ALL AND IN THE DARKNESS BIND THEM IN THE LAND OF MORDOR WHERE THE SHADOWS LIE";
+
+        try {
+            throw new RuntimeException();
+        } catch (Exception e) {
+            System.out.println("" + e.getStackTrace()[0]);
+        }
+         //assertEquals("Text", "Text");
+        
+        
+        GreedyTools greed=new GreedyTools();
+        greed.calcGreedyCost(longSpell);
+        int best=        greed.calced.sum;
+        System.out.println("" + greed.calced.sum);
+        ProgRand prand=new ProgRand(28884);        
+        
+        while(true){
+            greed.w.reset();            
+             String prog=""+prand.randProg(30);
+            try{
+               
+                OracleWorld.interpret(prog, greed.w);          
+                if(prand.countDiffSpace(greed.w) > 10){
+                    
+                    //System.err.println(""+nbBoucle+" "+prog+" -> "+w.debug_worldState()+" (nbInst) "+w.instruct.length());
+                    greed.calcGreedyCost(longSpell);
+                    
+                    int sc=greed.calced.sum+prog.length();
+                    
+                    if(sc<best){
+                        best=sc;
+                        System.out.println("Score " + sc); 
+                        System.out.println("prog " + prog); 
+                    }
+                                       
+                }
+                
+                
+            }catch(Exception e){
+               // System.err.println(""+i+" "+prog+" "+e);
+               // e.printStackTrace();
+            }            
+        }
+   
+    }
+    
+    
+    public static void exploreInitialState(){
+        
+        String allA="";
+        
+        System.out.println("Main");
+        
+        
+        Utils.World w=new Utils.World();
+        System.err.println(""+w.debug_worldState());
+        
+        ProgRand prand=new ProgRand(28884);
+        
+        int nbBoucle=10000;
+        while(nbBoucle>0){
+            w.reset();
+             String prog=""+prand.randProg(30);
+            try{
+               
+                OracleWorld.interpret(prog, w);          
+                if(prand.countDiffSpace(w) > 20){
+                    nbBoucle--;
+                    
+                    System.err.println(""+nbBoucle+" "+prog+" -> "+w.debug_worldState()+" (nbInst) "+w.instruct.length());
+                }
+                
+                
+            }catch(Exception e){
+               // System.err.println(""+i+" "+prog+" "+e);
+               // e.printStackTrace();
+            }
+                    
+        }
+
+        
+//+>-[<.>-]        
+                
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Main");
+        //exploreInitialState();
+        exploreRingLeader();
+        
     }
     
 }
