@@ -19,6 +19,10 @@ public class Blocks {
         return in;
     };
     
+    public static final SolverV2.FunctionV2I _repeatOneLetter(String c){
+        return new Sol_repeatOneLetter(c); 
+    }    
+    
     public static final SolverV2.FunctionV2I setAtCursor(char c){
         return new Sol_setAtCursor(c); 
     }
@@ -52,7 +56,7 @@ public class Blocks {
         int costFor[] = new int[SolverV2.NBZONE];
         int totCost[] = new int[SolverV2.NBZONE];            
         
-            for (int z = 0; z < SolverV2.NBZONE; z++) {
+            for (int z = 0; z < SolverV2.NBZONE; z++) { 
                 costAt[z] = o.w.pureCostFor(z, c);
                 costFor[z] = o.w.playerCostFor(z);
                 totCost[z] = Math.abs(costAt[z]) + Math.abs(costFor[z]);
@@ -123,4 +127,28 @@ public class Blocks {
         }
 
     }    
+    
+    private static class Sol_repeatOneLetter implements SolverV2.FunctionV2I {
+        
+        final String toEmit;
+
+        public Sol_repeatOneLetter(String in) {
+            this.toEmit = in;
+        }
+                
+
+        @Override
+        public SolverV2.Output apply(SolverV2.Output o) {
+            int len = toEmit.length() ;
+            char c = toEmit.charAt(0);
+            Blocks.seGreedy(c).apply(o);
+            if(len>=SolverV2.NBLETTER) len=SolverV2.NBLETTER-1;
+            
+            Blocks.setCursorTo(o.w.playerZone-1).apply(o);
+            Blocks.setAtCursor(SolverV2.ALLCHAR[len]).apply(o);
+            o.programApplied.append("[->.<]");
+            
+            return o;
+        }
+    }      
 }
