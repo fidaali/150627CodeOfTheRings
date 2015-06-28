@@ -19,9 +19,51 @@ import java.util.List;
  * @author Jahan
  */
 public class TestPerfs {
-    public static void main(String args[]){
+    
+    public static void testDetail(){    
+        
         ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
+        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
+        
+        
+        for(SolverV2.SolveurV2I sol : toApply){
+            long t0=System.currentTimeMillis();
+            
+            int totStep=0;
+            int totInst=0;
+            
+            for(String prob : toTest.getProblems()){
+                long t2=System.currentTimeMillis();
+                
+                Testeur.TestOne t=new Testeur.TestOne(prob, new SolverV2.WorldV2(), sol.apply(prob));
+                
+                long t3=System.currentTimeMillis();
+                System.out.println("Candidat "+sol+"  "+(t3-t2)+" ms");
+                System.out.println(""+prob);
+                System.out.println(""+t.program());
+                System.out.println(" inst "+t.instCost());
+                System.out.println(" step "+t.stepCost());                
+                
+                totInst+=t.instCost();
+                totStep+=t.stepCost();
+            }
+
+            long t1=System.currentTimeMillis();
+            long t=t1-t0;
+            
+            System.out.println("---------------------------------------");
+            System.out.println("Candidat "+sol+"  "+t+" ms");
+            System.out.println(" inst "+totInst);
+            System.out.println(" step "+totStep);
+        }            
+    }
+    
+    public static void testCollectionStandardSeveral(){
+        ProblemCollectionI toTest=ProblemCollection.officialToSolve();
+        List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
+        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
+        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
         toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
         
         
@@ -42,10 +84,16 @@ public class TestPerfs {
             long t1=System.currentTimeMillis();
             long t=t1-t0;
             
+            System.out.println("---------------------------------------");
             System.out.println("Candidat "+sol+"  "+t+" ms");
             System.out.println(" inst "+totInst);
             System.out.println(" step "+totStep);
-        }
+        }        
+    }
+    
+    public static void main(String args[]){
+       // testCollectionStandardSeveral();
+        testDetail();
         
     }
 }
