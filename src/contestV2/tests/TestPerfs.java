@@ -62,7 +62,8 @@ public class TestPerfs {
         
         ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
-        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
+        //toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
+        toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
         
         
         for(SolverV2.SolveurV2I sol : toApply){
@@ -106,6 +107,7 @@ public class TestPerfs {
         ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
         toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
+        toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
         
         
         for(SolverV2.SolveurV2I sol : toApply){
