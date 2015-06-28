@@ -23,6 +23,7 @@ public class Testeur {
         int[] ic=new int[all.size()];
         
         for(int i=0;i<ic.length;i++){
+            System.out.println("compare "+all.get(i).program()+" "+all.get(i).instCost());            
             ic[i]=all.get(i).instCost();
         }
         

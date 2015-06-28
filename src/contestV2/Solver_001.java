@@ -28,17 +28,17 @@ public class Solver_001 implements SolverV2.FunctionV2I {
 
                 //System.err.println("## "+toEmit);
         Splitter split = new Splitter(toEmit);
-        Splitter.RepeatPattern rp = split.extractRepeat(1);
+        Splitter.RepeatPattern rp = null;
         int maxSz = 5;
-        int currSz = 2;
+        int currSz = 1;
 
         while (rp == null && currSz < maxSz) {
             rp = split.extractRepeat(currSz);
-            if (rp != null && rp.pattern.length()==1) {
-                System.err.println("" + rp);
+            if (rp != null ) {
+                System.out.println("Found Pattern" + rp);
 
                 List<Testeur.TestOne> them = Testeur.newListTestOne();
-                them.add(new Testeur.TestOne(toEmit, o.w, Blocks._repeatOneLetter(toEmit)::apply));
+                them.add(new Testeur.TestOne(toEmit, o.w, new Blocks.Sol_repeatPattern(toEmit,rp.pattern.length(),rp.nbRepeat)::apply));
                 them.add(new Testeur.TestOne(toEmit, o.w, new SimpleStrat.Solve_greedy(toEmit)::apply));
 
                 return Testeur.applyBest(them, o);

@@ -53,13 +53,13 @@ public class Splitter {
                 c=input.charAt(index);
             }
             if(nb>=4){
-                System.err.println("first "+first+" "+c+"  nbC "+nbC+"  carTry "+tryWith+"  count="+nb+" index "+index);
+               // System.err.println("first "+first+" "+c+"  nbC "+nbC+"  carTry "+tryWith+"  count="+nb+" index "+index);
                confirmation=Math.min(nb, confirmation);
                if(tryWith==nbC-1){
                     res.pattern=""+input.substring(0,nbC);
                     res.nbRepeat=confirmation;
                     
-                    System.err.println(" found pattern "+res);
+                    //System.err.println(" found pattern "+res);
                     return res;                       
                }
                

@@ -151,4 +151,48 @@ public class Blocks {
             return o;
         }
     }      
+    
+    public static class Sol_repeatPattern implements SolverV2.FunctionV2I {
+        
+        final String toEmit;
+        final int sz;
+        final int nb;
+
+        public Sol_repeatPattern(String in,int sz,int nb) {
+            this.toEmit = in;
+            this.sz=sz;
+            this.nb=nb;
+        }
+                
+
+        @Override
+        public SolverV2.Output apply(SolverV2.Output o) {
+            int len = toEmit.length() ;
+            char c = toEmit.charAt(0);
+            Blocks.seGreedy(c).apply(o);
+            for(int i=1;i<sz;i++){
+                Blocks.setCursorTo(o.w.playerZone+1);
+                Blocks.setAtCursor(toEmit.charAt(i));
+            }
+            Blocks.setCursorTo(o.w.playerZone-sz);
+            
+            
+            if(len>=SolverV2.NBLETTER) len=SolverV2.NBLETTER-1;
+            
+            Blocks.setCursorTo(o.w.playerZone-1).apply(o);
+            Blocks.setAtCursor(SolverV2.ALLCHAR[len]).apply(o);
+            String prog="[-";
+            for(int i=0;i<sz;i++){
+                prog+=">.";
+            }
+            for(int i=0;i<sz;i++){
+                prog+="<";
+            }           
+            prog+="]";
+            
+            o.loop(prog);
+            
+            return o;
+        }
+    }        
 }
