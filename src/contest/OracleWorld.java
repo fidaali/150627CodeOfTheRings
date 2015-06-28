@@ -49,9 +49,13 @@ public class OracleWorld {
                 } break;        
                     
                 case '[' :{
-                    open.add(i);
-                    if(w.currZone().getCurr()==' '){
-                        ignore=true;
+                        if(!ignore){
+
+
+                        open.add(i);
+                        if(w.currZone().getCurr()==' '){
+                            ignore=true;
+                        }
                     }
                 } break;
                 

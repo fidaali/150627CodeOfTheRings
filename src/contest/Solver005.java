@@ -2,6 +2,14 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+
++[>->-[->]>-] || [Z#ZR####AACNA##OAQUN##UOWXVM#T] 5 (nbInst) 1571
+^Quality = 13  diff letter : 14
+
+930 --[>+[+>]>+--] || [PS##D#F#ZNW#TLXO#OR#IV#OR#IV#O] 3 (nbInst) 2450 ^Quality = 14  diff letter : 15
+
+9927 -[[>-<+<]<<>-<<-] || [MBJ#QAH#SAG#Z#FT#GDN#PCIX#EEO#] 13 (nbInst) 2584 ^Quality = 17  diff letter : 20
+
  */
 
 package contest;
@@ -15,7 +23,16 @@ public class Solver005 implements SolverInterface{
     String in=null;
     int len=-1;
     
-    String[] progs=new String[]{"","-[+<--<<+>---><]"};
+    String[] progs=new String[]{"",
+        "-[+<--<<+>---]" // for long spell
+            ,"-[+<--<+<+]<" // for short spell
+            ,"+<++[[[-]-[<+]]<]" // ^Quality = 29  diff letter : 26
+            ,"--[>[->]-[<]>->>-]++" // ^Quality = 30  diff letter : 26
+            ,"-[>>+[-<+>>+<]<]" // [ZABCDEFGHIJKLMNOPQRSTUVWXYZ###] 27 (nbInst) 3322
+            ,"+[>->-[->]>-]" // [Z#ZR####AACNA##OAQUN##UOWXVM#T] 5 (nbInst) 1571 ^Quality = 13  diff letter : 14
+            ,"--[>+[+>]>-]" // || [PS##D#F#ZNW#TLXO#OR#IV#OR#IV#O] 3 (nbInst) 2450 ^Quality = 14  diff letter : 15
+            ,"-[[>-<+<]<-<<-]" // || [MBJ#QAH#SAG#Z#FT#GDN#PCIX#EEO#] 13 (nbInst) 2584 ^Quality = 17  diff letter : 20
+    };
     
     @Override
     public void input(String in) {
@@ -29,9 +46,7 @@ public class Solver005 implements SolverInterface{
         GreedyTools greed=new GreedyTools();
         greed.calcGreedyCost(in);
         int best=        greed.calced.sum;
-        int bestProgInt=0;
-        //System.out.println("" + greed.calced.sum);
-        ProgRand prand=new ProgRand(28884);        
+        int bestProgInt=0; 
         
         for(int i=1;i<progs.length;i++){
             greed.w.reset();            

@@ -6,6 +6,7 @@
 
 package contest;
 
+import java.util.HashSet;
 import java.util.Random;
 
 /**
@@ -38,7 +39,18 @@ public class ProgRand {
     }
     
     public int countDiffLetters(Utils.World w){
-        return 0;
+        HashSet<Character> it=new HashSet<>(512);
+        int res=0;
+        
+        for(int i=0;i<w.zone.length;i++){
+            Character cc=w.zone[i].getCurr();
+            if(!it.contains(cc)){
+                it.add(cc);
+                res++;
+            }
+        }        
+        
+        return res;
     }
     
     public String randProg(int maxSz){
