@@ -29,20 +29,32 @@ public class Splitter {
         
     }
     
-    public RepeatPattern extractRepeat(){
+    public RepeatPattern extractRepeat(int nbC){
         RepeatPattern res=new RepeatPattern();
         
-        char first=input.charAt(0);
-        char c=first;
-        int nb=0;
-        while(c==first && nb+1 < input.length()){
-            nb++;
-            c=input.charAt(nb);
+        int tryWith=0;
+        int confirmation=Integer.MAX_VALUE;
+        
+        while(tryWith<nbC){
+            char first=input.charAt(tryWith);
+            char c=first;
+            int nb=tryWith;
+            while(c==first && nb+nbC < input.length()){
+                nb+=nbC;
+                c=input.charAt(nb);
+            }
+            if(nb>=4){
+               confirmation=Math.min(nb, confirmation);
+            }            else{
+                confirmation=0;break;
+            }
+            tryWith++;
         }
-        if(nb>=4){
-            res.pattern=""+first;
-            res.nbRepeat=nb;
-            return res;
+
+        if(confirmation>=4){                
+                res.pattern=""+input.substring(0,confirmation);
+                res.nbRepeat=confirmation;
+                return res;        
         }
         return null;
     }

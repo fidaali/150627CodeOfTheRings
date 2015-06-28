@@ -30,7 +30,7 @@ public class Solver_001 implements SolverV2.FunctionV2I {
                 //System.err.println("## "+toEmit);
                 
                 Splitter split=new Splitter(toEmit);
-                Splitter.RepeatPattern rp=split.extractRepeat();
+                Splitter.RepeatPattern rp=split.extractRepeat(1);
                 if(rp!=null){
                     List<Testeur.TestOne> them=Testeur.newListTestOne();
                     them.add(new Testeur.TestOne(toEmit, o.w,Blocks._repeatOneLetter(toEmit)::apply));
