@@ -29,7 +29,7 @@ public class Solver_001 implements SolverV2.FunctionV2I {
                 //System.err.println("## "+toEmit);
         Splitter split = new Splitter(toEmit);
         Splitter.RepeatPattern rp = null;
-        int maxSz = 5;
+        int maxSz = 15;
         int currSz = 1;
 
         while (rp == null && currSz < maxSz) {
