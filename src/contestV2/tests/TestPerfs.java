@@ -12,6 +12,7 @@ import contestV2.ProblemCollection;
 import contestV2.ProblemCollection.ProblemCollectionI;
 import contestV2.SimpleStrat;
 import contestV2.SolverV2;
+import contestV2.Solver_001;
 import contestV2.Testeur;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,8 +100,9 @@ public class TestPerfs {
         
         ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
-        toApply.add((e)-> new SimpleStrat.Solve_inplace(e)::apply);
+        
         toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
+        toApply.add((e)-> new Solver_001(e)::apply);
         
         
         for(SolverV2.SolveurV2I sol : toApply){
@@ -135,16 +137,23 @@ public class TestPerfs {
         ProblemCollectionI toTest=ProblemCollection.oneLetterPattern();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
         toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);        
-        toApply.add((e)-> new SimpleStrat.Solve_repeatOneLetter(e)::apply);
+        toApply.add((e)-> new Solver_001(e)::apply);
 
         testDetail(toTest, toApply);
     }
     
     public static void main(String args[]){
-        testOneLetter();
+        //testOneLetter();
         
-       // testDetail();
-       // testCollectionStandardSeveral();        
+        
+        ProblemCollectionI toTest=ProblemCollection.officialToSolve();
+        List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
+        
+        toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
+        toApply.add((e)-> new Solver_001(e)::apply);        
+        testDetail(toTest, toApply);
+       
+       //testCollectionStandardSeveral();        
         
     }
 }
