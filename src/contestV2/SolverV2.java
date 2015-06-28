@@ -12,9 +12,23 @@ package contestV2;
  */
 public class SolverV2 {
     
+    public static class Output{
+        final StringBuilder done=new StringBuilder(512);
+        final StringBuilder programApplied=new StringBuilder(512);
+        final WorldV2 w=new WorldV2();
+
+        public Output() {
+        }
+        
+        public Output(WorldV2 w) {
+            this.w.copy(w);
+        }        
+        
+        
+    }
+    
     public interface SolverV2I{
-        public void input(String in,WorldV2 w);     
-        public String programProposal();
+        public Output apply(Output in);
     }
     
     
@@ -89,20 +103,10 @@ public class SolverV2 {
     }
     
     public static class WorldV2{
-        public StringBuilder instruct=new StringBuilder(4000);
-        StringBuilder emits=new StringBuilder(4000);
         int playerZone=0;
         
-        public void clearInstruction(){
-            instruct=new StringBuilder(4000);
-            emits=new StringBuilder(4000);            
-        }
-        
         public void reset(){
-            playerZone=0;
-            instruct=new StringBuilder(4000);
-            emits=new StringBuilder(4000);
-            
+            playerZone=0;            
             for(int i=0;i<zone.length;i++){
                 zone[i]=new ZStateV2();
             }            
@@ -163,28 +167,27 @@ public class SolverV2 {
             return byPlus;        
         }        
         
-        public void incPlayer(){
+        public char incPlayer(){
             playerZone++; playerZone=playerZone%NBZONE;        
-            instruct.append(">");
+            return '>';
         };
-        public void decPlayer(){
+        public char decPlayer(){
             playerZone--;playerZone=(playerZone+NBZONE)%NBZONE;    
-            instruct.append("<");
+            return '<';
         };
         
-        public void incRune(){
+        public char incRune(){
             zone[playerZone].inc();
-            instruct.append("+");
+            return '+';
         }
         
-        public void decRune(){
+        public char decRune(){
             zone[playerZone].dec();
-            instruct.append("-");            
+            return '-';           
         }
         
-        public void outRune(){
-            instruct.append(".");
-            emits.append(ALLCHAR[zone[playerZone].c]);
+        public char outRune(){
+            return '.';
         }
     }
     
