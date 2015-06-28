@@ -33,10 +33,9 @@ public class Solver_001 implements SolverV2.FunctionV2I {
         int currSz = 2;
 
         while (rp == null && currSz < maxSz) {
-            rp = split.extractRepeat(1);
-            if (rp != null) {
+            rp = split.extractRepeat(currSz);
+            if (rp != null && rp.pattern.length()==1) {
                 System.err.println("" + rp);
-                System.exit(1);
 
                 List<Testeur.TestOne> them = Testeur.newListTestOne();
                 them.add(new Testeur.TestOne(toEmit, o.w, Blocks._repeatOneLetter(toEmit)::apply));
