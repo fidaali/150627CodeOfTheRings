@@ -51,8 +51,10 @@ public class SimpleStrat {
                 Testeur.TestOne test2=new Testeur.TestOne(toEmit, o.w,new Solve_greedy(toEmit)::apply);
                 
                 if(test.instCost()<test2.instCost()){
-                    System.out.println(""+test.program()+" SUCCESS"+" vs "+test2.program());
-                    
+                    //System.out.println(""+test.program()+" SUCCESS"+" vs "+test2.program());
+                    //System.out.println("done "+test.done()+" left "+test.leftOver());
+                    o.loop(test.program());     
+                    return new Solve_repeatOneLetter(test.leftOver()).apply(o);
                 }else{
                     o.programApplied.append(test2.program());
                     o.w.copy(test2.res.w);

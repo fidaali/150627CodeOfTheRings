@@ -134,6 +134,7 @@ public class TestPerfs {
     public static void testOneLetter(){
         ProblemCollectionI toTest=ProblemCollection.oneLetterPattern();
         List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
+        toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);        
         toApply.add((e)-> new SimpleStrat.Solve_repeatOneLetter(e)::apply);
 
         testDetail(toTest, toApply);

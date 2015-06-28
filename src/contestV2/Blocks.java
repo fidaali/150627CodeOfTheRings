@@ -147,6 +147,7 @@ public class Blocks {
             Blocks.setCursorTo(o.w.playerZone-1).apply(o);
             Blocks.setAtCursor(SolverV2.ALLCHAR[len]).apply(o);
             o.programApplied.append("[->.<]");
+            o.loop("[->.<]");
             
             return o;
         }

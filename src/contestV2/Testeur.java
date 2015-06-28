@@ -27,7 +27,7 @@ public class Testeur {
         
         public String leftOver(){
             String d=done();
-            if(!toSolve.startsWith(d)) throw new RuntimeException("Emit differe de demande !");
+            if(!toSolve.startsWith(d)) throw new RuntimeException("Emit differe de demande !"+" emis = "+d+" demande "+toSolve);
             return toSolve.substring(d.length());
         }
         
