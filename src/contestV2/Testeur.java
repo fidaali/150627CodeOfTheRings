@@ -15,9 +15,9 @@ public class Testeur {
     public static class TestOne{
         public final String toSolve;    
         public final SolverV2.Output res;
-        final SolverV2.SolverV2I to;
+        final SolverV2.FunctionV2I to;
 
-        public TestOne(String toSolve, SolverV2.WorldV2 w,SolverV2.SolverV2I to) {
+        public TestOne(String toSolve, SolverV2.WorldV2 w,SolverV2.FunctionV2I to) {
             this.toSolve = toSolve;
             this.res = new SolverV2.Output(w);
             this.to=to;

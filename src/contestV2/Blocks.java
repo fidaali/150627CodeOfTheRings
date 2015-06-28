@@ -11,18 +11,18 @@ package contestV2;
  */
 public class Blocks {
 
-    public static final SolverV2.SolverV2I emitAtCursor = (SolverV2.Output in) -> {
+    public static final SolverV2.FunctionV2I emitAtCursor = (SolverV2.Output in) -> {
         in.programApplied.append(in.w.outRune());
         in.done.append(in.w.currZone().getCurr());
         in.steps++;
         return in;
     };
     
-    public static final SolverV2.SolverV2I setAtCursor(char c){
+    public static final SolverV2.FunctionV2I setAtCursor(char c){
         return new Sol_setAtCursor(c); 
     }
 
-    private static class Sol_setAtCursor implements SolverV2.SolverV2I {
+    private static class Sol_setAtCursor implements SolverV2.FunctionV2I {
 
         final char c;
 

@@ -29,8 +29,12 @@ public class SolverV2 {
         
     }
     
-    public interface SolverV2I{
+    public interface FunctionV2I{
         public Output apply(Output in);
+    }
+    
+    public interface SolveurV2I{
+        public FunctionV2I apply(String in);
     }
     
     

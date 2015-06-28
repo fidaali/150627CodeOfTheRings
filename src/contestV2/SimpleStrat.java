@@ -12,7 +12,7 @@ package contestV2;
  */
 public class SimpleStrat {
     
-    public static class Solve_inplace implements SolverV2.SolverV2I {
+    public static class Solve_inplace implements SolverV2.FunctionV2I {
         
         final String toEmit;
 
