@@ -17,6 +17,8 @@ public class Solver006 implements SolverInterface {
     String[] progs = new String[]{"",};
 
     GreedyTools greed = new GreedyTools();
+    
+    Utils.World w=null;
 
     public String genOneLetterRepeatProg(char l, int nb) {
         String res = "";
@@ -95,7 +97,7 @@ public class Solver006 implements SolverInterface {
         for (int i = 1; i < in.length(); i++) {
             char c = in.charAt(i);
             if (c != it) {
-                return -1;
+                return count;
             }
 
             count++;
@@ -120,6 +122,16 @@ public class Solver006 implements SolverInterface {
         String res = "NO DATA";
 
         return res;
+    }
+
+    @Override
+    public String leftOver() {
+        return null;
+    }
+
+    @Override
+    public void setWorldState(Utils.World w) {
+        this.w=w;
     }
 
 }

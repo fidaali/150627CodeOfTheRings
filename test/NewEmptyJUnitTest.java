@@ -7,8 +7,6 @@
 import contest.GreedyTools;
 import contest.GreedyTools2;
 import contest.OracleWorld;
-import contest.Solver002;
-import contest.Solver003;
 import contest.Solver004_greedySimple;
 import contest.Solver005;
 import contest.Solver006;
@@ -119,51 +117,6 @@ public class NewEmptyJUnitTest {
 
             sf.debug_out();
         }
-
-    }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    //@Test
-    public void Solver002() {
-         //assertEquals("Text", "Text");
-
-        try {
-            throw new RuntimeException();
-        } catch (Exception e) {
-            System.out.println("" + e.getStackTrace()[0]);
-        }
-
-        SolverInterface solv = new Solver002();
-
-        solv.input("" + longSpell);
-
-        solv.output();
-
-        System.out.println("" + solv);
-
-    }
-
-    //@Test
-    public void Solver003() {
-
-        try {
-            throw new RuntimeException();
-        } catch (Exception e) {
-            System.out.println("" + e.getStackTrace()[0]);
-        }
-         //assertEquals("Text", "Text");
-
-        SolverInterface solv = new Solver003();
-
-        String bigIn = "THREE RINGS FOR THE ELVEN KINGS UNDER THE SKY SEVEN FOR THE DWARF LORDS IN THEIR HALLS OF STONE NINE FOR MORTAL MEN DOOMED TO DIE ONE FOR THE DARK LORD ON HIS DARK THRONEIN THE LAND OF MORDOR WHERE THE SHADOWS LIE ONE RING TO RULE THEM ALL ONE RING TO FIND THEM ONE RING TO BRING THEM ALL AND IN THE DARKNESS BIND THEM IN THE LAND OF MORDOR WHERE THE SHADOWS LIE";
-
-        solv.input("" + bigIn);
-
-        solv.output();
-
-        System.out.println("" + solv);
 
     }
 

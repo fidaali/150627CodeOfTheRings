@@ -14,5 +14,7 @@ public interface SolverInterface {
     
     public void input(String in);
     public String output();
+    public String leftOver();
+    public void setWorldState(Utils.World w);
     
 }

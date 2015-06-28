@@ -22,6 +22,7 @@ public class Solver005 implements SolverInterface{
 
     String in=null;
     int len=-1;
+        GreedyTools greed=new GreedyTools();    
     
     String[] progs=new String[]{"",
         "-[+<--<<+>---]" // for long spell
@@ -43,7 +44,7 @@ public class Solver005 implements SolverInterface{
     @Override
     public String output() {
                 
-        GreedyTools greed=new GreedyTools();
+
         greed.calcGreedyCost(in);
         int best=        greed.calced.sum;
         int bestProgInt=0; 
@@ -90,6 +91,16 @@ public class Solver005 implements SolverInterface{
         String res="NO DATA";
         
         return res;
+    }
+
+    @Override
+    public String leftOver() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setWorldState(Utils.World w) {
+        this.greed.w=w;
     }
     
 }

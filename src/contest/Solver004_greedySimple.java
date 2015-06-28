@@ -80,5 +80,15 @@ public class Solver004_greedySimple  implements SolverInterface{
         
         return res;
     }
+
+    @Override
+    public String leftOver() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setWorldState(Utils.World w) {
+        this.w=w;
+    }
     
 }
