@@ -35,7 +35,7 @@ public class Solver_001 implements SolverV2.FunctionV2I {
         while (rp == null && currSz < maxSz) {
             rp = split.extractRepeat(currSz);
             if (rp != null ) {
-                System.out.println("Found Pattern" + rp);
+               // System.out.println("Found Pattern" + rp);
 
                 List<Testeur.TestOne> them = Testeur.newListTestOne();
                 them.add(new Testeur.TestOne(toEmit, o.w, new Blocks.Sol_repeatPattern(toEmit,rp.pattern.length(),rp.nbRepeat)::apply));

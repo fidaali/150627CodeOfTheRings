@@ -27,12 +27,12 @@ public class Blocks {
         return new Sol_setAtCursor(c); 
     }
     public static final SolverV2.FunctionV2I setCursorTo(int c){
-        //System.err.println("whant to get to "+c);
+        //System.out.println("whant to get to "+c);
         
         if(c<0){ c+=SolverV2.NBZONE;}
         //System.err.println("whant to get to "+c);
         c=c%SolverV2.NBZONE;
-        //System.err.println(" really whant to get to "+c);
+        //System.out.println(" really whant to get to "+c);
         
         return new Sol_setCursorTo(c); 
     }    
@@ -111,7 +111,9 @@ public class Blocks {
         @Override
         public SolverV2.Output apply(SolverV2.Output in) {
             int cost = in.w.playerCostFor(c);
-            //System.err.println("going from "+in.w.playerZone+" to "+c+" cost is "+cost);
+            
+           // if(cost!=0)
+               // System.out.println("going from "+in.w.playerZone+" to "+c+" cost is "+cost);
             while (cost > 0) {
                 in.programApplied.append(in.w.incPlayer());
                 in.steps++;
@@ -167,14 +169,17 @@ public class Blocks {
 
         @Override
         public SolverV2.Output apply(SolverV2.Output o) {
-            int len = toEmit.length() ;
+            int len = nb ;
             char c = toEmit.charAt(0);
             Blocks.seGreedy(c).apply(o);
             for(int i=1;i<sz;i++){
-                Blocks.setCursorTo(o.w.playerZone+1);
-                Blocks.setAtCursor(toEmit.charAt(i));
+                //System.out.println(""+o.w.debug_worldState());
+                Blocks.setCursorTo(o.w.playerZone+1).apply(o);
+                Blocks.setAtCursor(toEmit.charAt(i)).apply(o);
+                //System.out.println(""+o.w.debug_worldState());
             }
-            Blocks.setCursorTo(o.w.playerZone-sz);
+            for(int i=1;i<sz;i++)
+                Blocks.setCursorTo(o.w.playerZone-1).apply(o);
             
             
             if(len>=SolverV2.NBLETTER) len=SolverV2.NBLETTER-1;

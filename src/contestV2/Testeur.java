@@ -23,7 +23,7 @@ public class Testeur {
         int[] ic=new int[all.size()];
         
         for(int i=0;i<ic.length;i++){
-            System.out.println("compare "+all.get(i).program()+" "+all.get(i).instCost());            
+            //System.out.println("compare "+all.get(i).program()+" "+all.get(i).instCost());            
             ic[i]=all.get(i).instCost();
         }
         
@@ -48,7 +48,7 @@ public class Testeur {
         
         public String leftOver(){
             String d=done();
-            if(!toSolve.startsWith(d)) throw new RuntimeException("Emit differe de demande !"+" emis = "+d+" demande "+toSolve);
+            if(!toSolve.startsWith(d)) throw new RuntimeException("Emit differe de demande !"+" emis = "+d+" demande "+toSolve+"  "+d.length()+"  "+toSolve.length());
             return toSolve.substring(d.length());
         }
         
