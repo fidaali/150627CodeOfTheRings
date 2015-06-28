@@ -47,11 +47,17 @@ public class Solver_001 implements SolverV2.FunctionV2I {
             currSz++;
         }
         {
-            Testeur.TestOne test1 = new Testeur.TestOne(toEmit, o.w, new SimpleStrat.Solve_greedy(toEmit)::apply);
+                List<Testeur.TestOne> them = Testeur.newListTestOne();
+                final String[] progs=new String[]{""
+                    ,"-[+<--<<+>---]" // for long spell
+                        ,"-[+<--<+<+]<" // for short spell
+                };       
+                them.add(new Testeur.TestOne(toEmit, o.w, new SimpleStrat.Solve_greedyWithProg(toEmit,"")::apply));
+                for(String p : progs){
+                    them.add(new Testeur.TestOne(toEmit, o.w, new SimpleStrat.Solve_greedyWithProg(toEmit,p)::apply));
+                }
 
-            o.programApplied.append(test1.program());
-            o.w.copy(test1.res.w);
-            return o;
+                return Testeur.applyBest(them, o);
         }
 
     }

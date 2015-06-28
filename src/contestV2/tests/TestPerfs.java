@@ -151,9 +151,9 @@ public class TestPerfs {
         
         //toApply.add((e)-> new SimpleStrat.Solve_greedy(e)::apply);
         toApply.add((e)-> new Solver_001(e)::apply);        
-        testDetail(toTest, toApply);
+        //testDetail(toTest, toApply);
        
-       //testCollectionStandardSeveral();        
+       testCollectionStandardSeveral();        
         
     }
 }

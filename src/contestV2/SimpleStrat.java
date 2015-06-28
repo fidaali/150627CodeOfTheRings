@@ -12,6 +12,31 @@ package contestV2;
  */
 public class SimpleStrat {
     
+    public static class Solve_greedyWithProg implements SolverV2.FunctionV2I {
+        
+        final String toEmit;
+        final String patch;
+
+        public Solve_greedyWithProg(String in,String patch) {
+            this.toEmit = in;
+            this.patch=patch;
+        }
+        
+        
+
+        @Override
+        public SolverV2.Output apply(SolverV2.Output o) {
+            o.loop(patch);
+            int len = toEmit.length() ;
+            for(int i=0;i<len;i++){
+                char c = toEmit.charAt(i);
+                Blocks.seGreedy(c).apply(o);
+                Blocks.emitAtCursor.apply(o);
+            }
+            return o;
+        }
+    }    
+    
     public static class Solve_greedy implements SolverV2.FunctionV2I {
         
         final String toEmit;
