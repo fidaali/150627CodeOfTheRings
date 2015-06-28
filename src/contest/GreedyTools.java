@@ -114,7 +114,7 @@ public class GreedyTools {
         int costFor[] = new int[Utils.NBZONE];
         int totCost[] = new int[Utils.NBZONE];
 
-        for (int i = 1; i < len; i++) {
+        for (int i = 1; i < len+1; i++) {
             char c = in.charAt(i);
 
             for (int z = 0; z < Utils.NBZONE; z++) {
