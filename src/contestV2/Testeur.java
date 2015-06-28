@@ -6,11 +6,31 @@
 
 package contestV2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Jahan
  */
 public class Testeur {
+    
+    public static List<TestOne> newListTestOne(){
+        return new ArrayList<>(20);
+    }
+    
+    public static SolverV2.Output applyBest(List<TestOne> all,SolverV2.Output o){
+        int[] ic=new int[all.size()];
+        
+        for(int i=0;i<ic.length;i++){
+            ic[i]=all.get(i).instCost();
+        }
+        
+        int ind=SolverV2.firstMinFor(ic);
+        
+        o.loop(all.get(ind).program());     
+        return new Solver_001(all.get(ind).leftOver()).apply(o);        
+    }
     
     public static class TestOne{
         public final String toSolve;    
