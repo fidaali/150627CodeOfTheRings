@@ -56,6 +56,15 @@ public class SolverV2 {
             
             return c;
         }
+        
+        public static int normalizeRuneLoc(int c){
+            while(c<0){
+                c = (c + NBZONE) % NBZONE;
+            }
+            c = c % NBZONE;
+            
+            return c;
+        }        
 
     public static class Output {
 

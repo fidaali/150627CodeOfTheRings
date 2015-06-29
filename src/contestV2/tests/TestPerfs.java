@@ -8,6 +8,7 @@ package contestV2.tests;
 import contest.OracleWorld;
 import contest.Utils;
 import contestV2.Blocks;
+import contestV2.Solver_MonteCarlo;
 import contestV2.ProblemCollection;
 import contestV2.ProblemCollection.ProblemCollectionI;
 import contestV2.SimpleStrat;
@@ -244,9 +245,25 @@ public class TestPerfs {
         //testDetail(toTest, toApply);
         compareImplementation(toTest, toApply);
     }
+    
+    public static void compareTwo(){
+        ProblemCollectionI toTest = ProblemCollection.symetrical(ProblemCollection.officialToSolve());
+        //ProblemCollectionI toTest = ProblemCollection.officialToSolve();
+
+        solverCollection toApply = new solverCollection();
+        //toApply.add((e) -> new Solver_001(e)::apply, "Context switcher");
+        toApply.add((e) -> new SimpleStrat.Solve_greedy(e)::apply, "greedy");
+        toApply.add((e) -> new Solver_MonteCarlo(e)::apply, "Carlos");
+        //toApply.add((e) -> new Solver_ReverseThem(e)::apply, "reverse");
+
+        //testDetail(toTest, toApply);
+        compareImplementation(toTest, toApply);
+    }
 
     public static void main(String args[]) {
-        testOneLetter();
+        
+        compareTwo();
+        //testOneLetter();
 
         //ProblemCollectionI toTest=ProblemCollection.officialToSolve();
         //List<SolverV2.SolveurV2I> toApply=new ArrayList<>();
