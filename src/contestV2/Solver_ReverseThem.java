@@ -40,6 +40,7 @@ public class Solver_ReverseThem implements SolverV2.FunctionV2I {
     public SolverV2.Output apply(SolverV2.Output o) {
         
         HashMap<String,String> solutionMap=new HashMap<>(50);
+        solutionMap.put("LLLLLLLLLLLLLLL", "");
 
         if (toEmit.isEmpty()) {
             return o;
