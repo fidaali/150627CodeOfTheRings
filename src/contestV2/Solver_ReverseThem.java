@@ -57,17 +57,17 @@ public class Solver_ReverseThem implements SolverV2.FunctionV2I {
 //        solutionMap.put("TFA NFT ALT TFNNLT AFNTFN AFN NLANLA NLT ALTNLT TFANFTTFN","-[+<--<<+>---]<++++.<+++.>>+.-.>+.<<<.>.>.+.>--.<<.>-.<.<.<-..--.>>.>.+.<<.<++.>>.<.<.<---.+.>>.<.<-.>.--.<+.<-.--.>.-.<++.--.>>>>.>-.+.>.<<.<<++.<<.>>>>.>-.<.<.<<+.>.>.>..<.<.");
        solutionMap.put("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV","++++++++>-[<.>-]-[<.>-]<.>-----<[->.<]--[->.<]>....."); // 13335
 //        
-// +++       solutionMap.put("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY","-->>>+++++++[-<++[-<+++++[-<.>]>]>]");
+solutionMap.put("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY","-->>>+++++++[-<++[-<+++++[-<.>]>]>]"); // 13298
 //        solutionMap.put("TZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOF","------->->->+++++>++++++++++++>++++++++++++>++++++++++++>------------>------------>++++++<<<<<<<<<<+++++++[->.>.>.>.>.>.>.>.>.>.<<<<<<<<<<]-[+<--<+<+]<<.>..>>-.>++...>+..<<+.");
 //        solutionMap.put("L LILUZIMV OZHHVNRHGZ XZIMRNRIRV L ILDZM UZRI FKLM BLFI SZRI SLD DSRGV GSV YOLHHLN OZB","-[+<--<+<+]<<-.>-.<.---.+++.<-----.<<<.>----.<<<.<----.<-.<++.<.<<-----..<----.<<+.++++.>>>.-.>>.<-.---.>.<<++.++++.<<<.<<<+.>>>.>>>----.<<<.>>.<-.>>+++.<<.>>---.+++.<<++++.<<.<<-.>-.>>+++.<.>---.>+++++.<<<.++++++.<--.+.+.<<-.++.<-.>>>>.+++.<<<--.>>>>>+.<.>-.>.<<<<<<.>>>>>+.>>>.<<-----.----.++++.<.-.<<--.>>>>.<----.<<<.>>+.>>.<.--.<----.---.<<+..<-.++.<<.>>+.<.<++.");
 //        solutionMap.put("ZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT YZOILT Y","->------------>+++++++++>++++++++++++>------->>--<<<<<<<--[->.>.>.>.>.>.>.<<<<<<<]-.-----------.------.+++.<-------.<.--.");
 //        solutionMap.put("LBOL B LLLBBB OOOBLLBB L BL BOLL L LOB BO LB O BB O BLL OBO BBBLLBOLO O B L BBBOOLB L O BBBLLBOLO BLOLOLB","-[+<--<+<+]<<-.>+.>>+.<<<.>>.<.>.<<...>...>.>...<<.<..>..>.<<.>>.<.<.>>.<.>>.<<<..>>.<<.>>.<<.+++.>.>.<.<.>>.>---.<<.>.<<.>>.<..>.<<.>>.<.>>..<.<<.>.<.>>.<...>>..<<.<.---.+++.>>.<<.>>.<.>.>.<.<...<..---.>.>.>.<.>+++.<.<...<..>.>>.<<<.+++.>>.<.<---.+++.---.+++.---.>.");
 //        
-// +++        solutionMap.put("GFEDCBA ZYXWVUTSRQ","+++++++[->->+<<]>--[->.-<]");
-// +++        solutionMap.put("ZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZ","-[->+<-]>--[->-[.-]-.+<]");
+ solutionMap.put("GFEDCBA ZYXWVUTSRQ","+++++++[->->+<<]>--[->.-<]"); //13282
+ solutionMap.put("ZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZ","-[->+<-]>--[->-[.-]-.+<]"); //12711
 //        solutionMap.put("LILALOLPLGLMLULTLNLQLSLULGLOLKL LWLBLDLZLAL LKLQLGL LILCLELCL LX","-[+<--<+<+]<<-.---.+++.>.<.+++.---.++++.<<<-.-----.<<<-.+.-.<-----.>.<-.>.++.--.<---.>.<++.>.<++.>.>>>.<<<.+++.---.-.+.>-.<.<++.>.<<+.<-.>++.<.<.>.<<.<-.>-.<.-.+.+++++.>>>.>+++.<.<<.>>.---.+++.<<+++.>>.>--.<.<<.>>.>>>>.<.<+.");
-// +++      solutionMap.put(" Z Y X W V U T S R Q P O N M L K J I H G F E D C B A","-[>.<.-]");
-//        solutionMap.put("URULURULURULURULURULURULURULURULURULURULURULURUL UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN","------>--------->------>++++++++++++<<<<++++++++++++[->.>.>.>.<<<<]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>------------>-------<<<<-------------[->.>.>.>.<<<<].------.<++++++.++++++++.");
+// +++ EXISTE PAS     solutionMap.put(" Z Y X W V U T S R Q P O N M L K J I H G F E D C B A","-[>.<.-]");
+        solutionMap.put("URULURULURULURULURULURULURULURULURULURULURULURUL UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN","---[+>-->-->--<<<]>>--->>->->-[-<+<+>>-]<[-<<<<.>.>.>.>]---[+>-->++>---->----<<<<]>>>->[-<<<<.>.>.>.>]"); // 11777
 //        
 //        solutionMap.put("TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB SRQRSRQRQRQRSRSRSRQRSRQRSRQRQRQRSSSRQRQSRSS","------->++><<<-[->.>.>.<<<]-------.<++.<.>>.<.<.>>-.-.-.+.+.-.-.+.-.+.-.+.+.-.+.-.+.-.-.+.+.-.-.+.+.-.-.+.-.+.-.+.+...-.-.+.-.++.-.+..");
 //        solutionMap.put("NVOOLM NLIRZNVOOLM NLIRZNLIRZNLIRZNVOOLM NVOOLM NVOOLM NLIRZNLIRZNVOOLM NVOOLM NLIRZ","-[+<--<<+>---]>+.<-----.<-..---.+.<---.<-.--.---.<<+++.>>>-.>+.>.<+..---.+.<<<---.<<<-.--.---.>>.>-.>>>+.--.<<.<<.>.<----.--.<<.<<+++.<----.<-.>----.<+..---.+.<---.<-.>>>.<++..---.+.<.<.>>>.<++..---.+.<.<.--.---.>>>>.<<<-.>+.--.<<.>>>>.<<<.>++.>.<+..---.+.<<<---.<-.>>>>>.<++..---.+.<<<.<.--.>>.>>>>.<<<.");
@@ -85,7 +85,7 @@ public class Solver_ReverseThem implements SolverV2.FunctionV2I {
             return o;
         }        
         
-       // new Solver_001(toEmit).apply(o); 
+      //  new Solver_001(toEmit).apply(o); 
         
         for(int i=0;i<toEmit.length();i++){
             char c=toEmit.charAt(i);
