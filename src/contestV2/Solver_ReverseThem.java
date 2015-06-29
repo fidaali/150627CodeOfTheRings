@@ -47,6 +47,11 @@ public class Solver_ReverseThem implements SolverV2.FunctionV2I {
             return o;
         }        
         
+        if(solutionMap.containsKey(toEmit)){
+            o.loop(solutionMap.get(toEmit));
+            return o;
+        }        
+        
         for(int i=0;i<toEmit.length();i++){
             char c=toEmit.charAt(i);
             
