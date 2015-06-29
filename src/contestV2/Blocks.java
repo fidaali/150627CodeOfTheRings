@@ -71,6 +71,72 @@ public class Blocks {
         }
 
     }    
+    
+        public static class Sol_recurGreedy implements SolverV2.FunctionV2I {
+
+        final String inpu;
+        final int currL;
+        final int depth;
+
+        Sol_recurGreedy(String inpu,int currL, int depth) {
+            this.inpu = inpu;
+            this.currL=currL;
+            this.depth=depth;
+        }
+        
+        public int recurCostAt(SolverV2.Output o,int gatez,int currLev,int endLev){
+            if(currLev==endLev || currLev>=inpu.length()-1){
+                char c = inpu.charAt(currLev);
+                    int cost=0;
+                        cost+= Math.abs(o.w.pureCostFor(gatez, c));
+                        cost+= Math.abs(o.w.playerCostFor(gatez));
+
+                    return cost;            
+            }
+            
+            else{
+                char c = inpu.charAt(currLev);
+                    int cost=0;
+                        cost+= Math.abs(o.w.pureCostFor(gatez, c));
+                        cost+= Math.abs(o.w.playerCostFor(gatez));                
+            
+                int totCost[] = new int[SolverV2.NBZONE];
+                    for (int z = 0; z < SolverV2.NBZONE; z++) { 
+                        SolverV2.Output next=new SolverV2.Output();
+                        next.w.copy(o.w);
+                        
+                        (new Sol_setCursorTo(z)).apply(next); 
+                        new Sol_setAtCursor(c).apply(next);                         
+                        
+                        totCost[z] = recurCostAt(next,z, currLev+1, endLev);
+                    }                
+                int theMin = SolverV2.firstMinFor(totCost); 
+                return totCost[theMin]+cost;
+            }
+        }
+
+        @Override
+        public SolverV2.Output apply(SolverV2.Output o) {
+            
+        int totCost[] = new int[SolverV2.NBZONE];            
+        
+            char c = inpu.charAt(currL);
+            for (int z = 0; z < SolverV2.NBZONE; z++) { 
+                totCost[z] = recurCostAt(o,z, currL, currL+depth);
+                //System.out.println("cost at "+z+" is "+totCost[z]);
+            }
+
+            int theMin = SolverV2.firstMinFor(totCost); 
+            
+            
+            (new Sol_setCursorTo(theMin)).apply(o); 
+            new Sol_setAtCursor(c).apply(o);   
+             Blocks.emitAtCursor.apply(o);
+
+            return o;
+        }
+
+    }
 
     private static class Sol_setAtCursor implements SolverV2.FunctionV2I {
 

@@ -6,7 +6,6 @@
 
 package contestV2;
 
-import contest.Solver004_greedySimple;
 import java.util.Random;
 
 /**
@@ -16,24 +15,7 @@ import java.util.Random;
 public class Solver_MonteCarlo  implements SolverV2.FunctionV2I{
     
     final String toEmit;    
-    final Random rand;    
-    class  RandomStrat implements SolverV2.FunctionV2I{        
-        @Override
-        public SolverV2.Output apply(SolverV2.Output o) {
-            int len = toEmit.length() ;
-            for(int i=1;i<len;i++){
-                char c = toEmit.charAt(i);
-                int ri=rand.nextInt()&0xFFFFFF;
-                ri=SolverV2.normalizeRuneLoc(ri);
-                Blocks.setCursorTo(ri).apply(o);          
-                Blocks.setAtCursor(c).apply(o);
-                Blocks.emitAtCursor.apply(o);
-            }
-            return o;
-        }           
-        
-    }
-    
+    final Random rand;       
 
         public Solver_MonteCarlo(String in) {
             rand=new Random(457457);
@@ -44,8 +26,10 @@ public class Solver_MonteCarlo  implements SolverV2.FunctionV2I{
 
         @Override
         public SolverV2.Output apply(SolverV2.Output o) {
-            SolverV2.Output localContext=new SolverV2.Output();             
-            localContext.w.copy(o.w);
+            for(int i=0;i<toEmit.length();i++){
+                new Blocks.Sol_recurGreedy(toEmit, i,4).apply(o);
+            
+            }
             
             
             
