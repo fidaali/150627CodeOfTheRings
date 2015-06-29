@@ -234,10 +234,11 @@ public class TestPerfs {
         //ProblemCollectionI toTest=ProblemCollection.generateRepeatLetter('A', 'Z', 13, 26);   
 
         ProblemCollectionI toTest = ProblemCollection.symetrical(ProblemCollection.officialToSolve());
+        //ProblemCollectionI toTest = ProblemCollection.officialToSolve();
 
         solverCollection toApply = new solverCollection();
         //toApply.add((e)-> new Blocks.Sol_repeatPattern(e,1,e.length())::apply,"Repeater");        
-        toApply.add((e) -> new SimpleStrat.Solve_greedy(e)::apply, "Greedy");
+        toApply.add((e) -> new Solver_001(e)::apply, "Context");
         toApply.add((e) -> new Solver_ReverseThem(e)::apply, "reverse");
 
         //testDetail(toTest, toApply);
