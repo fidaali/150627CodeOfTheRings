@@ -96,6 +96,7 @@ public class Main {
                // ,"+++++++[->->+<<]>--[->.-<]"
                // ,"-[.-]-." // alphabet 11 x + Z
                // ,"-[->+<-]>--[->-[.-]-.+<]" // alphabet 11 x + Z
+                ,"-[>.<.-]"
         };  
         
         int nbBoucle = progs.length-1;

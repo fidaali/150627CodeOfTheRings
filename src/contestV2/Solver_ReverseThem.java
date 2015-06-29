@@ -66,7 +66,7 @@ public class Solver_ReverseThem implements SolverV2.FunctionV2I {
 // +++        solutionMap.put("GFEDCBA ZYXWVUTSRQ","+++++++[->->+<<]>--[->.-<]");
 // +++        solutionMap.put("ZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZZYXWVUTSRQPONMLKJIHGFEDCBAZ","-[->+<-]>--[->-[.-]-.+<]");
 //        solutionMap.put("LILALOLPLGLMLULTLNLQLSLULGLOLKL LWLBLDLZLAL LKLQLGL LILCLELCL LX","-[+<--<+<+]<<-.---.+++.>.<.+++.---.++++.<<<-.-----.<<<-.+.-.<-----.>.<-.>.++.--.<---.>.<++.>.<++.>.>>>.<<<.+++.---.-.+.>-.<.<++.>.<<+.<-.>++.<.<.>.<<.<-.>-.<.-.+.+++++.>>>.>+++.<.<<.>>.---.+++.<<+++.>>.>--.<.<<.>>.>>>>.<.<+.");
-//        solutionMap.put(" Z Y X W V U T S R Q P O N M L K J I H G F E D C B A",".-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.<-.>.+.");
+// +++      solutionMap.put(" Z Y X W V U T S R Q P O N M L K J I H G F E D C B A","-[>.<.-]");
 //        solutionMap.put("URULURULURULURULURULURULURULURULURULURULURULURUL UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN UFN","------>--------->------>++++++++++++<<<<++++++++++++[->.>.>.>.<<<<]<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>------------>-------<<<<-------------[->.>.>.>.<<<<].------.<++++++.++++++++.");
 //        
 //        solutionMap.put("TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB TB SRQRSRQRQRQRSRSRSRQRSRQRSRQRQRQRSSSRQRQSRSS","------->++><<<-[->.>.>.<<<]-------.<++.<.>>.<.<.>>-.-.-.+.+.-.-.+.-.+.-.+.+.-.+.-.+.-.-.+.+.-.-.+.+.-.-.+.-.+.-.+.+...-.-.+.-.++.-.+..");
