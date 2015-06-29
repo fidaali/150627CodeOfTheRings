@@ -84,9 +84,12 @@ public class Main {
                 //,"-[->+<-]>-."
                 //,-[->+<-] M
                 //,"-[->+<-]->-<[->.<-]"
-                //,"+[>-]>[.>]>.."
+                //,"+[>-]>[.>]>.." ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ (31)
                 //,"-[->+<-]>[->+>+<<]"
                 //,"-[->+>+<<-]>>-<<-------[->.>.<<]" //MLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLML
+                //,"++++++++>-[<.>-]-[<.>-]<."// H 53
+                //,"++++++++>->++[-<[<.>-]->]" H 52 (HZ)
+                ,"++++++++>-[<.>-]-[<.>-]<.>-----<[->.<]--[->.<]>....."// H 53 V 38
         };  
         
         int nbBoucle = progs.length-1;
@@ -97,7 +100,7 @@ public class Main {
                 w.reset();
                 String res=OracleWorld.interpret(prog, w);
                 System.out.println("state |"+w.debug_worldState());
-                System.out.println("res |"+res);
+                System.out.println("res |"+res +" "+res.length());
 
             } catch (Exception e) {
                // System.err.println(""+i+" "+prog+" "+e);

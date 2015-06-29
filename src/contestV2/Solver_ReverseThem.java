@@ -55,7 +55,7 @@ public class Solver_ReverseThem implements SolverV2.FunctionV2I {
           solutionMap.put("ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ","+[>-]>[.>]>.."); // 13455
         solutionMap.put("MLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLML","-[->+>+<<-]>>-<<-------[->.>.<<]"); // 13395
 //        solutionMap.put("TFA NFT ALT TFNNLT AFNTFN AFN NLANLA NLT ALTNLT TFANFTTFN","-[+<--<<+>---]<++++.<+++.>>+.-.>+.<<<.>.>.+.>--.<<.>-.<.<.<-..--.>>.>.+.<<.<++.>>.<.<.<---.+.>>.<.<-.>.--.<+.<-.--.>.-.<++.--.>>>>.>-.+.>.<<.<<++.<<.>>>>.>-.<.<.<<+.>.>.>..<.<.");
-//        solutionMap.put("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV","++++++++<-[->.<]++++++++<-[->.<]>.<-----......................................");
+       solutionMap.put("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV","++++++++>-[<.>-]-[<.>-]<.>-----<[->.<]--[->.<]>....."); // 13335
 //        
 //        solutionMap.put("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY","--<-[->.<]--<-[->.<]><----------[->.<]>.");
 //        solutionMap.put("TZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOFTZZELLLOOF","------->->->+++++>++++++++++++>++++++++++++>++++++++++++>------------>------------>++++++<<<<<<<<<<+++++++[->.>.>.>.>.>.>.>.>.>.<<<<<<<<<<]-[+<--<+<+]<<.>..>>-.>++...>+..<<+.");
