@@ -80,7 +80,13 @@ public class Main {
         String[] progs=new String[]{""
             //,"-[>+.<-]" //ABCDEFGHIJKLMNOPQRSTUVWXYZ
            // ,"++++[>++.<-]" //BDFH
-                ,"+++[>+.-<-]" //H
+            //    ,"+++[>+.-<-]" //H
+                //,"-[->+<-]>-."
+                //,-[->+<-] M
+                //,"-[->+<-]->-<[->.<-]"
+                //,"+[>-]>[.>]>.."
+                //,"-[->+<-]>[->+>+<<]"
+                //,"-[->+>+<<-]>>-<<-------[->.>.<<]" //MLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLMLML
         };  
         
         int nbBoucle = progs.length-1;
