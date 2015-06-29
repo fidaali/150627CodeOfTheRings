@@ -171,7 +171,7 @@ public class Blocks {
         public SolverV2.Output apply(SolverV2.Output o) {
             int len = nb ;
             char c = toEmit.charAt(0);
-            Blocks.seGreedy(SolverV2.dec(c)).apply(o);
+            Blocks.seGreedy(SolverV2.decLetter(c)).apply(o);
             for(int i=1;i<sz;i++){
                 //System.out.println(""+o.w.debug_worldState());
                 Blocks.setCursorTo(o.w.playerZone+1).apply(o);
@@ -180,7 +180,7 @@ public class Blocks {
                 //for(int k=0;k<i;k++){
                     //thc=SolverV2.inc(thc);
                // }
-                thc=SolverV2.dec(thc);
+                thc=SolverV2.decLetter(thc);
                 Blocks.setAtCursor(thc).apply(o);
                 
                 //System.out.println(""+o.w.debug_worldState());
@@ -188,7 +188,7 @@ public class Blocks {
             for(int i=1;i<sz;i++){
                 Blocks.setCursorTo(o.w.playerZone-1).apply(o);
                 char thc=toEmit.charAt(i);
-                thc=SolverV2.dec(thc);
+                thc=SolverV2.decLetter(thc);
                 Blocks.setAtCursor(thc).apply(o);
             }
             

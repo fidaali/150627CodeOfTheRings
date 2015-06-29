@@ -35,6 +35,15 @@ public class Splitter {
         
     }
     
+    public boolean exactlyOneCar(){
+        char c = input.charAt(0);
+        for(int i=0;i<input.length();i++){
+            if(input.charAt(i)!=c) return false;
+        }
+        
+        return true;
+    }
+    
 public RepeatPattern extractRepeatWithInc(int nbC){
         RepeatPattern res=new RepeatPattern();
         

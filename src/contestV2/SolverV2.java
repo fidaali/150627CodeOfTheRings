@@ -14,7 +14,8 @@ import java.util.List;
  */
 public class SolverV2 {
     
-        public static char inc(char d) {
+    
+        public static char incLetter(char d) {
             int c=convToIndex(d);
             
             c++;
@@ -24,7 +25,7 @@ public class SolverV2 {
         }
 
         ;
-        public static char dec(char d) {
+        public static char decLetter(char d) {
             int c=convToIndex(d);
             
             c--;
@@ -33,7 +34,7 @@ public class SolverV2 {
         }      
     
     
-        public static int inc(int c) {
+        public static int incLetter(int c) {
             c++;
             c = c % NBLETTER;
             
@@ -41,11 +42,20 @@ public class SolverV2 {
         }
 
         ;
-        public static int dec(int c) {
+        public static int decLetter(int c) {
             c--;
             c = (c + NBLETTER) % NBLETTER;
             return c;
         }    
+        
+        public static int normalizeLetter(int c){
+            while(c<0){
+                c = (c + NBLETTER) % NBLETTER;
+            }
+            c = c % NBLETTER;
+            
+            return c;
+        }
 
     public static class Output {
 
@@ -149,10 +159,12 @@ public class SolverV2 {
 
         public Output apply(Output in);
     }
+    
 
     public interface SolveurV2I {
 
         public FunctionV2I apply(String in);
+
     }
 
     public final static int NBLETTER = 27;
