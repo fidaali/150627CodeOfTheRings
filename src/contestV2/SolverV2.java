@@ -14,58 +14,56 @@ import java.util.List;
  * @author Jahan
  */
 public class SolverV2 {
-    
-    
-        public static char incLetter(char d) {
-            int c=convToIndex(d);
-            
-            c++;
-            c = c % NBLETTER;
-            
-            return ALLCHAR[c];
-        }
 
-        ;
+    public static char incLetter(char d) {
+        int c = convToIndex(d);
+
+        c++;
+        c = c % NBLETTER;
+
+        return ALLCHAR[c];
+    }
+
+    ;
         public static char decLetter(char d) {
-            int c=convToIndex(d);
-            
-            c--;
-            c = (c + NBLETTER) % NBLETTER;
-            return ALLCHAR[c];
-        }      
-    
-    
-        public static int incLetter(int c) {
-            c++;
-            c = c % NBLETTER;
-            
-            return c;
-        }
+        int c = convToIndex(d);
 
-        ;
+        c--;
+        c = (c + NBLETTER) % NBLETTER;
+        return ALLCHAR[c];
+    }
+
+    public static int incLetter(int c) {
+        c++;
+        c = c % NBLETTER;
+
+        return c;
+    }
+
+    ;
         public static int decLetter(int c) {
-            c--;
+        c--;
+        c = (c + NBLETTER) % NBLETTER;
+        return c;
+    }
+
+    public static int normalizeLetter(int c) {
+        while (c < 0) {
             c = (c + NBLETTER) % NBLETTER;
-            return c;
-        }    
-        
-        public static int normalizeLetter(int c){
-            while(c<0){
-                c = (c + NBLETTER) % NBLETTER;
-            }
-            c = c % NBLETTER;
-            
-            return c;
         }
-        
-        public static int normalizeRuneLoc(int c){
-            while(c<0){
-                c = (c + NBZONE) % NBZONE;
-            }
-            c = c % NBZONE;
-            
-            return c;
-        }        
+        c = c % NBLETTER;
+
+        return c;
+    }
+
+    public static int normalizeRuneLoc(int c) {
+        while (c < 0) {
+            c = (c + NBZONE) % NBZONE;
+        }
+        c = c % NBZONE;
+
+        return c;
+    }
 
     public static class Output {
 
@@ -169,7 +167,6 @@ public class SolverV2 {
 
         public Output apply(Output in);
     }
-    
 
     public interface SolveurV2I {
 
@@ -266,14 +263,14 @@ public class SolverV2 {
             playerZone = 0;
             for (int i = 0; i < zone.length; i++) {
                 zone[i] = new ZStateV2();
-            }            
+            }
         }
 
         public void copy(WorldV2 it) {
             playerZone = it.playerZone;
             for (int i = 0; i < zone.length; i++) {
                 zone[i].copy(it.zone[i]);
-                costMatrix[i]=it.costMatrix[i];
+                costMatrix[i] = it.costMatrix[i];
             }
         }
 
@@ -303,45 +300,45 @@ public class SolverV2 {
         public int pureCostFor(int i, char c) {
             return zone[i].cost(c);
         }
-        
-        int[] costMatrix=new int[SolverV2.NBZONE];
-        public final void calcCostMatrix(){
-            
-            for(int i=0;i<SolverV2.NBZONE;i++){
-                costMatrix[i]=Integer.MAX_VALUE;
+
+        int[] costMatrix = new int[SolverV2.NBZONE];
+
+        public final void calcCostMatrix() {
+
+            for (int i = 0; i < SolverV2.NBZONE; i++) {
+                costMatrix[i] = Integer.MAX_VALUE;
             }
-            
-            int gor=playerZone;
-            int gol=playerZone;
-            int dist=0;
-            costMatrix[playerZone]=dist++;
-            
-            for(int i=0;i<SolverV2.NBZONE/2;i++){
+
+            int gor = playerZone;
+            int gol = playerZone;
+            int dist = 0;
+            costMatrix[playerZone] = dist++;
+
+            for (int i = 0; i < SolverV2.NBZONE / 2; i++) {
                 gor++;
                 gol--;
-                gor=normalizeRuneLoc(gor);
-                gol=normalizeRuneLoc(gol);
-                
-                costMatrix[gor]=Math.min(costMatrix[gor], dist);
-                costMatrix[gol]=Math.min(costMatrix[gol], dist);
-                
+                gor = normalizeRuneLoc(gor);
+                gol = normalizeRuneLoc(gol);
+
+                costMatrix[gor] = Math.min(costMatrix[gor], dist);
+                costMatrix[gol] = Math.min(costMatrix[gol], dist);
+
                 dist++;
-            }    
-            
+            }
+
           //  System.out.println(""+debug_worldState());
-          //  System.out.println("cost "+Arrays.toString(costMatrix));  
-            
+            //  System.out.println("cost "+Arrays.toString(costMatrix));  
            // for(int i=0;i<NBZONE;i++){                
-           //     System.out.print("|"+playerCostFor(i)+"("+costMatrix[i]+")");
-           // }System.out.println();
-            
-           // for(int i=0;i<NBZONE;i++){                
-               //if(Math.abs(playerCostFor(i))!=costMatrix[i]){
-                   //System.out.flush();
-                   //throw new RuntimeException("Diff constatee");
-           //    }
-            //}System.out.println();
-        }        
+            //     System.out.print("|"+playerCostFor(i)+"("+costMatrix[i]+")");
+            // }System.out.println();
+//           for(int i=0;i<NBZONE;i++){                
+//            if(Math.abs(playerCostFor(i))!=costMatrix[i]){
+//            //System.out.flush();
+//            throw new RuntimeException("Diff constatee");
+//                }
+//            }
+           //System.out.println();
+        }
 
         public int playerCostFor(int i) {
             int p = i;
@@ -351,27 +348,41 @@ public class SolverV2 {
             }
 
             // by ++ dist
-            final int byPlus;
-            final int byMinus;
+            final int byPlusF;
+            final int byMinusF;
 
             if (p > c) {
+                int byPlus;
+                int byMinus;
                 byPlus = p - c;
-                byMinus = c - p + NBZONE;
-            } else { // p<c
                 byMinus = c - p;
-                byPlus = c - p + NBZONE;
+                byMinus = normalizeRuneLoc(byMinus);
+                byPlus = normalizeRuneLoc(byPlus);
+
+                byPlusF = byPlus;
+                byMinusF = byMinus;
+            } else { // p<c
+                int byPlus;
+                int byMinus;
+                byMinus = c - p;
+                byPlus = p-c;
+                byMinus = normalizeRuneLoc(byMinus);
+                byPlus = normalizeRuneLoc(byPlus);
+
+                byPlusF = byPlus;
+                byMinusF = byMinus;
             }
 
-            if (byMinus < byPlus) {
-                return -byMinus;
+            if (byMinusF < byPlusF) {
+                return -byMinusF;
             }
-            return byPlus;
+            return byPlusF;
         }
 
         public char incPlayer() {
             playerZone++;
             playerZone = playerZone % NBZONE;
-            
+
             return '>';
         }
 
@@ -379,7 +390,7 @@ public class SolverV2 {
         public char decPlayer() {
             playerZone--;
             playerZone = (playerZone + NBZONE) % NBZONE;
-            
+
             return '<';
         }
 
