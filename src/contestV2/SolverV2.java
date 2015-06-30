@@ -302,17 +302,24 @@ public class SolverV2 {
         }
 
         int[] costMatrix = new int[SolverV2.NBZONE];
+        boolean[] jumpLeft = new boolean[SolverV2.NBZONE];
+        boolean[] jumpRight = new boolean[SolverV2.NBZONE];
 
         public final void calcCostMatrix() {
 
             for (int i = 0; i < SolverV2.NBZONE; i++) {
                 costMatrix[i] = Integer.MAX_VALUE;
+                jumpLeft[i] = false;
+                jumpRight[i] = false;
             }
 
             int gor = playerZone;
             int gol = playerZone;
             int dist = 0;
             costMatrix[playerZone] = dist++;
+
+            int jr = playerZone;
+            int jl = playerZone;
 
             for (int i = 0; i < SolverV2.NBZONE / 2; i++) {
                 gor++;
@@ -323,21 +330,85 @@ public class SolverV2 {
                 costMatrix[gor] = Math.min(costMatrix[gor], dist);
                 costMatrix[gol] = Math.min(costMatrix[gol], dist);
 
+                if ((this.zone[gor].c == 0) && (jr == playerZone)) {
+                    jr = gor;
+                }
+                if ((this.zone[gol].c == 0) && (jl == playerZone)) {
+                    jl = gol;
+                }
+
                 dist++;
             }
+            //if(jr!=playerZone || jl != playerZone){
+            //    System.out.println("JUMP ACTIVE "+jr+" "+jl);
+            // }
 
-          //  System.out.println(""+debug_worldState());
-            //  System.out.println("cost "+Arrays.toString(costMatrix));  
-           // for(int i=0;i<NBZONE;i++){                
-            //     System.out.print("|"+playerCostFor(i)+"("+costMatrix[i]+")");
-            // }System.out.println();
+            if (costMatrix[jr] > 3) {
+                //System.out.println("JUMP ACTIVE R " + jr);
+                gor = jr;
+                gol = jr;
+                dist = 3;
+
+                for (int i = 0; i < SolverV2.NBZONE / 2; i++) {
+
+                    gor = normalizeRuneLoc(gor);
+                    gol = normalizeRuneLoc(gol);
+
+                    if (costMatrix[gor] > dist) {
+                        jumpRight[gor] = true;
+                    }
+                    if (costMatrix[gol] > dist) {
+                        jumpRight[gol] = true;
+                    }
+                    costMatrix[gor] = Math.min(costMatrix[gor], dist);
+                    costMatrix[gol] = Math.min(costMatrix[gol], dist);
+
+                    gor++;
+                    gol--;
+                    dist++;
+                }
+
+            }
+
+            if (costMatrix[jl] > 3) {
+                //System.out.println("JUMP ACTIVE L " + jl);
+                gor = jl;
+                gol = jl;
+                dist = 3;
+
+                for (int i = 0; i < SolverV2.NBZONE / 2; i++) {
+
+                    gor = normalizeRuneLoc(gor);
+                    gol = normalizeRuneLoc(gol);
+
+                    if (costMatrix[gor] > dist) {
+                        jumpLeft[gor] = true;
+                    }
+                    if (costMatrix[gol] > dist) {
+                        jumpLeft[gol] = true;
+                    }
+                    costMatrix[gor] = Math.min(costMatrix[gor], dist);
+                    costMatrix[gol] = Math.min(costMatrix[gol], dist);
+                    gor++;
+                    gol--;
+                    dist++;
+                }
+            }
+
+//            System.out.println("" + debug_worldState());
+//            System.out.println("cost " + Arrays.toString(costMatrix));
+//            for (int i = 0; i < NBZONE; i++) {
+//                System.out.print("|" + playerCostFor(i) + "(" + costMatrix[i] + ")" + jumpLeft[i] + "|" + jumpRight[i]);
+//            }
+//            System.out.println();
+
 //           for(int i=0;i<NBZONE;i++){                
 //            if(Math.abs(playerCostFor(i))!=costMatrix[i]){
 //            //System.out.flush();
 //            throw new RuntimeException("Diff constatee");
 //                }
 //            }
-           //System.out.println();
+            //System.out.println();
         }
 
         public int playerCostFor(int i) {
@@ -365,7 +436,7 @@ public class SolverV2 {
                 int byPlus;
                 int byMinus;
                 byMinus = c - p;
-                byPlus = p-c;
+                byPlus = p - c;
                 byMinus = normalizeRuneLoc(byMinus);
                 byPlus = normalizeRuneLoc(byPlus);
 
