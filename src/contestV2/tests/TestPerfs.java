@@ -12,7 +12,6 @@ import contestV2.ProblemCollection.ProblemCollectionI;
 import contestV2.SimpleStrat;
 import contestV2.SolverV2;
 import contestV2.Solver_001;
-import contestV2.Solver_MonteCarlo;
 import contestV2.Solver_ReverseThem;
 import contestV2.Testeur;
 import java.util.ArrayList;
@@ -252,7 +251,7 @@ public class TestPerfs {
         solverCollection toApply = new solverCollection();
         //toApply.add((e) -> new Solver_001(e)::apply, "Context switcher");
         toApply.add((e) -> new SimpleStrat.Solve_greedy(e)::apply, "greedy");
-        toApply.add((e) -> new Solver_MonteCarlo(e)::apply, "Carlos");
+        
         //toApply.add((e) -> new Solver_ReverseThem(e)::apply, "reverse");
 
         //testDetail(toTest, toApply);

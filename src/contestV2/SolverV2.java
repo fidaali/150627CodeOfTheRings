@@ -6,6 +6,7 @@
 package contestV2;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -265,13 +266,14 @@ public class SolverV2 {
             playerZone = 0;
             for (int i = 0; i < zone.length; i++) {
                 zone[i] = new ZStateV2();
-            }
+            }            
         }
 
         public void copy(WorldV2 it) {
             playerZone = it.playerZone;
             for (int i = 0; i < zone.length; i++) {
                 zone[i].copy(it.zone[i]);
+                costMatrix[i]=it.costMatrix[i];
             }
         }
 
@@ -301,6 +303,45 @@ public class SolverV2 {
         public int pureCostFor(int i, char c) {
             return zone[i].cost(c);
         }
+        
+        int[] costMatrix=new int[SolverV2.NBZONE];
+        public final void calcCostMatrix(){
+            
+            for(int i=0;i<SolverV2.NBZONE;i++){
+                costMatrix[i]=Integer.MAX_VALUE;
+            }
+            
+            int gor=playerZone;
+            int gol=playerZone;
+            int dist=0;
+            costMatrix[playerZone]=dist++;
+            
+            for(int i=0;i<SolverV2.NBZONE/2;i++){
+                gor++;
+                gol--;
+                gor=normalizeRuneLoc(gor);
+                gol=normalizeRuneLoc(gol);
+                
+                costMatrix[gor]=Math.min(costMatrix[gor], dist);
+                costMatrix[gol]=Math.min(costMatrix[gol], dist);
+                
+                dist++;
+            }    
+            
+          //  System.out.println(""+debug_worldState());
+          //  System.out.println("cost "+Arrays.toString(costMatrix));  
+            
+           // for(int i=0;i<NBZONE;i++){                
+           //     System.out.print("|"+playerCostFor(i)+"("+costMatrix[i]+")");
+           // }System.out.println();
+            
+           // for(int i=0;i<NBZONE;i++){                
+               //if(Math.abs(playerCostFor(i))!=costMatrix[i]){
+                   //System.out.flush();
+                   //throw new RuntimeException("Diff constatee");
+           //    }
+            //}System.out.println();
+        }        
 
         public int playerCostFor(int i) {
             int p = i;
@@ -330,6 +371,7 @@ public class SolverV2 {
         public char incPlayer() {
             playerZone++;
             playerZone = playerZone % NBZONE;
+            
             return '>';
         }
 
@@ -337,6 +379,7 @@ public class SolverV2 {
         public char decPlayer() {
             playerZone--;
             playerZone = (playerZone + NBZONE) % NBZONE;
+            
             return '<';
         }
 
