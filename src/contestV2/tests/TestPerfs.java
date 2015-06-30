@@ -249,10 +249,9 @@ public class TestPerfs {
         //ProblemCollectionI toTest = ProblemCollection.officialToSolve();
 
         solverCollection toApply = new solverCollection();
-        //toApply.add((e) -> new Solver_001(e)::apply, "Context switcher");
+        toApply.add((e) -> new Solver_001(e)::apply, "Context switcher");
         toApply.add((e) -> new SimpleStrat.Solve_greedy(e)::apply, "greedy");
-        
-        //toApply.add((e) -> new Solver_ReverseThem(e)::apply, "reverse");
+        toApply.add((e) -> new Solver_ReverseThem(e)::apply, "reverse");
 
         //testDetail(toTest, toApply);
         compareImplementation(toTest, toApply);

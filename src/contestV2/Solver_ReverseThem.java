@@ -85,14 +85,14 @@ solutionMap.put("YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
             return o;
         }        
         
-      //  new Solver_001(toEmit).apply(o); 
+        new Solver_001(toEmit).apply(o); 
         
-        for(int i=0;i<toEmit.length();i++){
-            char c=toEmit.charAt(i);
-            
-            Blocks.setAtCursor(c).apply(o);
-            Blocks.emitAtCursor.apply(o);
-        }
+//        for(int i=0;i<toEmit.length();i++){
+//            char c=toEmit.charAt(i);
+//            
+//            Blocks.setAtCursor(c).apply(o);
+//            Blocks.emitAtCursor.apply(o);
+//        }
 
         return o;
 
